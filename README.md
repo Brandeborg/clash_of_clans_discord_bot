@@ -10,3 +10,6 @@ https://guide.pycord.dev/interactions/application-commands/slash-commands
 
 pycord help, because docs were not precise
 https://stackoverflow.com/questions/71165431/how-do-i-make-a-working-slash-command-in-discord-py
+
+Context (ctx) attributes 
+https://discordpy.readthedocs.io/en/latest/ext/commands/api.html#discord.ext.commands.Context
