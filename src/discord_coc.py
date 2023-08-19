@@ -10,18 +10,10 @@ DISCORD_TOKEN = os.getenv("DISCORD_BOT_API_TOKEN")
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix = "/", intents=intents)
 
-@client.event
-async def on_ready():
-    print(f'I\'m ready, yo')
+@bot.command()
+async def repeat(ctx, arg):
+    await ctx.send(arg)
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    
-    if message.content.startswith("$hello"):
-        await message.channel.send("Hello there")
-
-client.run(DISCORD_TOKEN)
+bot.run(DISCORD_TOKEN)
