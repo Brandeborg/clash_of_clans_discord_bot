@@ -18,6 +18,11 @@ def extract_playertag(displayname: str):
     return match.group(1)
 
 def validate_tag(tag: str):
+    """Make sure a tag is of the right format (10 digits)
+
+    Args:
+        tag (str): CoC player or clan tag
+    """
     if len(tag) != 10:
         raise Exception(
             """

@@ -13,6 +13,17 @@ class CoCAPI:
         self.headers = {'Authorization' : f"Bearer {COC_API_TOKEN}"}
 
     def player(self, playertag: str) -> dict:
+        """Fetches a player's data using the CoC API
+
+        Args:
+            playertag (str): A CoC player tag
+
+        Raises:
+            Exception: If status code is not 2xx, raise an exception
+
+        Returns:
+            dict: Player data
+        """
         # replace # with %23 for a properly formatted url
         playertag = urllib.parse.quote(playertag)
 
@@ -25,6 +36,17 @@ class CoCAPI:
             raise Exception("Something went wrong. The passed playertag may not exist.")
         
     def clan(self, clantag: str) -> dict:
+        """Fetches a clan's data using the CoC API
+
+        Args:
+            clantag (str): A CoC clan tag
+
+        Raises:
+            Exception: If status code is not 2xx, raise an exception
+
+        Returns:
+            dict: Clan data
+        """
         # replace # with %23 for a properly formatted url
         clantag = urllib.parse.quote(clantag)
 
