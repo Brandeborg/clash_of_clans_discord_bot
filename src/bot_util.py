@@ -1,7 +1,7 @@
 import re
 
 def extract_playertag(displayname: str):
-    """Get CoC usertag from Discord display name
+    """Get CoC playertag from Discord display name
 
     Args:
         displayname (str): Discord display name, which should contain a CoC playertag
@@ -15,16 +15,10 @@ def extract_playertag(displayname: str):
             \"Name (<COC_PLAYERTAG>)\"
             """)
     
-    tag = match.group(1)
-
-    if tag.startswith("#"):
-        return tag
-    
-    return '#' + tag
+    return match.group(1)
 
 def validate_playertag(tag: str):
-    tag = tag[1:] if tag.startswith("#") else tag
-    if len(tag) != 9:
+    if len(tag) != 10:
         raise Exception(
             """
             Invalid player tag, should follow one of these formats:

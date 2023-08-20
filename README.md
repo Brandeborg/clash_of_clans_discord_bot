@@ -13,3 +13,6 @@ https://stackoverflow.com/questions/71165431/how-do-i-make-a-working-slash-comma
 
 Context (ctx) attributes 
 https://discordpy.readthedocs.io/en/latest/ext/commands/api.html#discord.ext.commands.Context
+
+httpx docs
+https://www.python-httpx.org/advanced/
