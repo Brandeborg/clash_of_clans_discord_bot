@@ -1,26 +1,32 @@
 import os
 from dotenv import load_dotenv
 import re
+import bot_util
 
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_BOT_API_TOKEN")
+DISCORD_SERVER_ID = os.getenv("DISCORD_SERVER_ID")
 
 from discord.ext import commands
 from discord.commands import Option
 
 bot = commands.Bot()
 
-@bot.slash_command(name="repeat", description="Repeats the argument", guild_ids=[1142445213084815450])
-async def repeat(ctx, arg):
-    await ctx.respond(arg)
-
-@bot.slash_command(name="add", description="Adds two numbers", guild_ids=[1142445213084815450])
-async def add(ctx, num1, num2):
-    await ctx.respond(int(num1) + int(num2))
-
-@bot.slash_command(name="get_coc_id", description="Extracts the users CoC user ID from Discord username", guild_ids=[1142445213084815450])
-async def cocid(ctx, coc_uid: Option(str, "Enter your CoC user ID", required = False, default = None)):
-    coc_user_id = re.search(r'\((.*?)\)', ctx.author.display_name).group(1)
-    await ctx.respond(coc_user_id)
+@bot.slash_command(name="player_name", description="Returns the user's Clash of Clans name", guild_ids=[DISCORD_SERVER_ID])
+async def coc_name(ctx, coc_tag: Option(str, "Enter your CoC user ID", required = False, default = None)):
+    tag = get_playertag(ctx, coc_tag)
+    
+    
+# helper functions
+async def get_playertag(ctx, coc_tag):
+    try:
+        coc_player_tag = bot_util.extract_playertag(ctx.author.display_name) if not coc_tag else coc_tag
+    except Exception as e:
+        return await ctx.respond(e)
+    
+    try:
+        coc_player_tag = bot_util.validate_playertag(coc_player_tag)
+    except Exception as e:
+        return await ctx.respond(e)
 
 bot.run(DISCORD_TOKEN)
