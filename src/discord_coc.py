@@ -14,7 +14,7 @@ bot = commands.Bot()
 
 @bot.slash_command(name="player_name", description="Returns the user's Clash of Clans name", guild_ids=[DISCORD_SERVER_ID])
 async def coc_name(ctx, coc_tag: Option(str, "Enter your CoC user ID", required = False, default = None)):
-    tag = get_playertag(ctx, coc_tag)
+    tag = await get_playertag(ctx, coc_tag)
     
     
 # helper functions
@@ -25,8 +25,10 @@ async def get_playertag(ctx, coc_tag):
         return await ctx.respond(e)
     
     try:
-        coc_player_tag = bot_util.validate_playertag(coc_player_tag)
+        bot_util.validate_playertag(coc_player_tag)
     except Exception as e:
         return await ctx.respond(e)
+    
+
 
 bot.run(DISCORD_TOKEN)

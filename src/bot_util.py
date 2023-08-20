@@ -22,9 +22,13 @@ def extract_playertag(displayname: str):
     
     return '#' + tag
 
-def validate_playertag(tag):
+def validate_playertag(tag: str):
+    tag = tag[1:] if tag.startswith("#") else tag
     if len(tag) != 9:
-        raise Exception("""Invalid player tag, should follow this format:: 
-                        \n 
-                        \"A1BCD2EFG\"""")
+        raise Exception(
+            """
+            Invalid player tag, should follow one of these formats:
+            \"1BCDEFG8\"
+            \"#1BCDEFG8\"
+            """)
         
