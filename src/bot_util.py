@@ -22,7 +22,7 @@ def validate_playertag(tag: str):
         raise Exception(
             """
             Invalid player tag, should follow one of these formats:
-            \"1BCDEFG8\"
-            \"#1BCDEFG8\"
+            \"1BCDEFGH9\"
+            \"#1BCDEFGH9\"
             """)
         
