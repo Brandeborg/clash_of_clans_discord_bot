@@ -32,12 +32,14 @@ async def coc_clanname(ctx, playertag: Option(str, "Enter your CoC player tag", 
     if not clantag:
         try:
             playertag = await get_playertag(ctx.author.display_name) if not playertag else playertag
+            playertag = add_octothorpe(playertag)
             bot_util.validate_tag(playertag)
             clantag = await get_clantag(playertag)
         except Exception as e:
             return await ctx.respond(e)
     
     try:
+        clantag = add_octothorpe(clantag)
         bot_util.validate_tag(clantag)
         clan = coc.clan(clantag)
     except Exception as e:
@@ -47,15 +49,16 @@ async def coc_clanname(ctx, playertag: Option(str, "Enter your CoC player tag", 
 
 # helper functions
 async def get_playertag(displayname):
-    tag = bot_util.extract_playertag(displayname)
-
-    if not tag.startswith("#"):
-        tag = "#" + tag
-
-    return tag
+    return bot_util.extract_playertag(displayname)
 
 async def get_clantag(playertag):
     player = coc.player(playertag)
     return player["clan"]["tag"]
+
+def add_octothorpe(tag):
+    if not tag.startswith("#"):
+        tag = "#" + tag
+
+    return tag
 
 bot.run(DISCORD_TOKEN)
