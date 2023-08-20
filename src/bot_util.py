@@ -17,11 +17,11 @@ def extract_playertag(displayname: str):
     
     return match.group(1)
 
-def validate_playertag(tag: str):
+def validate_tag(tag: str):
     if len(tag) != 10:
         raise Exception(
             """
-            Invalid player tag, should follow one of these formats:
+            Invalid tag, should follow one of these formats:
             \"1BCDEFGH9\"
             \"#1BCDEFGH9\"
             """)
