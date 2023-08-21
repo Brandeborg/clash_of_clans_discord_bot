@@ -43,7 +43,7 @@ async def coc_playername(ctx, playertag: Option(str, "Enter your CoC player tag"
     await ctx.respond(player["name"])
 
 @bot.slash_command(name="player_progress_th", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
-async def coc_playername(ctx, playertag: Option(str, "Enter your CoC player tag", required=False, default=None)):
+async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC player tag", required=False, default=None)):
     """Sends a response containing a Clash of Clans player's progress of upgrading:
     - heroes
     - troops ("characters")
@@ -78,6 +78,9 @@ async def coc_playername(ctx, playertag: Option(str, "Enter your CoC player tag"
     del hero_maxes["Warmachine"]
     hero_maxes["Royal Champion"] = hero_maxes["Warrior Princess"]
     del hero_maxes["Warrior Princess"]
+
+    hero_actuals = bot_util.get_current_lvls(player["heroes"])
+    print(hero_actuals)
 
     ## troops
 

@@ -141,6 +141,11 @@ def get_max_lvls(th_lvl: int, item_group: str, rq_th_key="RequiredTownHallLevel"
 
     return max_lvls
 
+def get_current_lvls(units: list) -> dict:
+    current_lvls = {}
+    for unit in units:
+        current_lvls[unit["name"]] = unit["level"]
+
 
 def get_maxlvl_from_required_th(required_th_lvls: list, th_lvl: int) -> int:
     """Deduce the maximum item level from a list of "required townhall levels" of the form: 
@@ -168,14 +173,23 @@ def get_maxlvl_from_required_th(required_th_lvls: list, th_lvl: int) -> int:
 
     return init_max
 
-def get_item_upgrade_cost_current() -> int:
-    pass
+def get_item_upgrade_progress(item_upgrade_costs: list, item_lvl: int, max: bool = False,) -> int:
+    """Gets the "cost" of upgrading a certain item to item_lvl. "Cost" can mean either time or resources.
 
-def get_item_upgrade_cost_maxed() -> int:
-    pass
+    Args:
+        item_upgrade_costs (list): A list of upgrade costs for each lvl. 
+        item_lvl (int): Item level up to which costs are added
+        max (bool, optional): If true, sums all lvl costs. Defaults to False.
+
+    Returns:
+        int: Cost of upgrading item to item_lvl
+    """
+    n = len(item_upgrade_costs) if max else item_lvl 
+    
+    return sum(item_upgrade_costs[:n])
 
 def load_json(filename: str) -> dict:
-    """Loads a JSON file into a dics
+    """Loads a JSON file into a dict
 
     Args:
         filename (str): path to json file

@@ -1,1 +1,6 @@
 The clantag extraction process is the same for most commands. It should be wrapped in a function to avoid duplicate code.
+
+Have to stop because CoC API is down. Currently doing: 
+- Create function to extract "current level" of each "unit".
+- Use that and the "max level pr th" to create "paid cost / max cost" stat
+- Do the same to troops and spells and TH weapon

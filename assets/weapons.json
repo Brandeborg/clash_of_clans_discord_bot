@@ -1,0 +1,1067 @@
+{
+    "GoblinBossTH": {
+        "AttackEffect": [
+            "Bomb Tower Throw Start"
+        ],
+        "AttackRange": [
+            1100
+        ],
+        "AttackSpeed": [
+            1100
+        ],
+        "DPS": [
+            300
+        ],
+        "ExportName": [
+            "goblin_th02"
+        ],
+        "GroundTargets": [
+            true
+        ],
+        "HitEffect": [
+            "Bomb Tower Hit"
+        ],
+        "InfoTID": [
+            "TID_TOWN_HALL_WEAPON_INFO"
+        ],
+        "Level": [
+            1
+        ],
+        "MultiTargets": [
+            true
+        ],
+        "Projectile": [
+            "Bomb Tower Ammo1"
+        ],
+        "SWF": [
+            "sc/buildings.sc"
+        ],
+        "TID": [
+            "TID_WEAPON_TOWN_HALL"
+        ]
+    },
+    "GoblinTh02": {
+        "ActivationEffect": [
+            "Goblin Townhall Activate"
+        ],
+        "AirTargets": [
+            true
+        ],
+        "AttackEffect": [
+            "Goblin Townhall Attack"
+        ],
+        "AttackRange": [
+            1000
+        ],
+        "AttackSpeed": [
+            200
+        ],
+        "BuildResource": [
+            "Gold"
+        ],
+        "DPS": [
+            150
+        ],
+        "ExportName": [
+            "goblin_th02"
+        ],
+        "GroundTargets": [
+            true
+        ],
+        "HitEffect": [
+            "Generic Hit"
+        ],
+        "InfoTID": [
+            "TID_TOWN_HALL_WEAPON_INFO"
+        ],
+        "Level": [
+            1
+        ],
+        "MultiTargets": [
+            true
+        ],
+        "NumMultiTargets": [
+            3
+        ],
+        "Projectile": [
+            "Goblin Townhall Arrow"
+        ],
+        "SWF": [
+            "sc/buildings.sc"
+        ],
+        "StrengthWeight": [
+            800
+        ],
+        "TID": [
+            "TID_WEAPON_TOWN_HALL"
+        ]
+    },
+    "SpellTowerInvisibility": {
+        "AirTargets": [
+            true,
+            true,
+            true
+        ],
+        "AttackRange": [
+            450,
+            450,
+            450
+        ],
+        "AttackSpeed": [
+            50000,
+            50000,
+            50000
+        ],
+        "BuildResource": [
+            "Gold",
+            "Gold",
+            "Gold"
+        ],
+        "CoolDownOverride": [
+            48800,
+            48800,
+            48800
+        ],
+        "DPS": [
+            1,
+            1,
+            1
+        ],
+        "ExportName": [
+            "spell_tower_lvl1_invisibility",
+            "spell_tower_lvl2_invisibility",
+            "spell_tower_lvl3_invisibility"
+        ],
+        "GroundTargets": [
+            true,
+            true,
+            true
+        ],
+        "InfoTID": [
+            "TID_BUILDING_SPELL_TOWER_INFO",
+            "TID_BUILDING_SPELL_TOWER_INFO",
+            "TID_BUILDING_SPELL_TOWER_INFO"
+        ],
+        "Level": [
+            1,
+            2,
+            3
+        ],
+        "Projectile": [
+            "SpellTowerInvisibilityProjectile",
+            "SpellTowerInvisibilityProjectile",
+            "SpellTowerInvisibilityProjectile"
+        ],
+        "SWF": [
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc"
+        ],
+        "SelfAsAoeCenter": [
+            true,
+            true,
+            true
+        ],
+        "TID": [
+            "TID_WEAPON_INVISIBILITY_SPELL",
+            "TID_WEAPON_INVISIBILITY_SPELL",
+            "TID_WEAPON_INVISIBILITY_SPELL"
+        ]
+    },
+    "SpellTowerPoison": {
+        "AirTargets": [
+            true,
+            true,
+            true
+        ],
+        "AttackRange": [
+            900,
+            900,
+            900
+        ],
+        "AttackSpeed": [
+            70000,
+            70000,
+            70000
+        ],
+        "BuildResource": [
+            "Gold",
+            "Gold",
+            "Gold"
+        ],
+        "CoolDownOverride": [
+            68800,
+            68800,
+            68800
+        ],
+        "DPS": [
+            1,
+            1,
+            1
+        ],
+        "ExportName": [
+            "spell_tower_lvl1_poison",
+            "spell_tower_lvl2_poison",
+            "spell_tower_lvl3_poison"
+        ],
+        "GroundTargets": [
+            true,
+            true,
+            true
+        ],
+        "InfoTID": [
+            "TID_BUILDING_SPELL_TOWER_INFO",
+            "TID_BUILDING_SPELL_TOWER_INFO",
+            "TID_BUILDING_SPELL_TOWER_INFO"
+        ],
+        "Level": [
+            1,
+            2,
+            3
+        ],
+        "Projectile": [
+            "SpellTowerPoisonProjectile",
+            "SpellTowerPoisonProjectile",
+            "SpellTowerPoisonProjectile"
+        ],
+        "SWF": [
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc"
+        ],
+        "TID": [
+            "TID_WEAPON_POISON_SPELL",
+            "TID_WEAPON_POISON_SPELL",
+            "TID_WEAPON_POISON_SPELL"
+        ]
+    },
+    "SpellTowerRage": {
+        "AirTargets": [
+            true,
+            true,
+            true
+        ],
+        "AttackRange": [
+            900,
+            900,
+            900
+        ],
+        "AttackSpeed": [
+            70000,
+            70000,
+            70000
+        ],
+        "BuildResource": [
+            "Gold",
+            "Gold",
+            "Gold"
+        ],
+        "CoolDownOverride": [
+            68800,
+            68800,
+            68800
+        ],
+        "DPS": [
+            1,
+            1,
+            1
+        ],
+        "ExportName": [
+            "spell_tower_lvl1_rage",
+            "spell_tower_lvl2_rage",
+            "spell_tower_lvl3_rage"
+        ],
+        "GroundTargets": [
+            true,
+            true,
+            true
+        ],
+        "InfoTID": [
+            "TID_BUILDING_SPELL_TOWER_INFO",
+            "TID_BUILDING_SPELL_TOWER_INFO",
+            "TID_BUILDING_SPELL_TOWER_INFO"
+        ],
+        "Level": [
+            1,
+            2,
+            3
+        ],
+        "Projectile": [
+            "SpellTowerRageProjectile",
+            "SpellTowerRageProjectile",
+            "SpellTowerRageProjectile"
+        ],
+        "SWF": [
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc"
+        ],
+        "SelfAsAoeCenter": [
+            true,
+            true,
+            true
+        ],
+        "TID": [
+            "TID_WEAPON_RAGE_SPELL",
+            "TID_WEAPON_RAGE_SPELL",
+            "TID_WEAPON_RAGE_SPELL"
+        ]
+    },
+    "Townhall12": {
+        "ActivationEffect": [
+            "th12_teslat1_activate",
+            "th12_teslat1_activate",
+            "th12_teslat3_activate",
+            "th12_teslat3_activate",
+            "th12_teslat5_activate"
+        ],
+        "AirTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "AttackEffect": [
+            "th12_teslat1_attack_bolt",
+            "th12_teslat1_attack_bolt",
+            "th12_teslat3_attack_bolt",
+            "th12_teslat4_attack_bolt",
+            "th12_teslat5_attack_bolt"
+        ],
+        "AttackEffect2": [
+            "th12_teslat1_attack",
+            "th12_teslat2_attack",
+            "th12_teslat3_attack",
+            "th12_teslat3_attack",
+            "th12_teslat5_attack"
+        ],
+        "AttackRange": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+        ],
+        "AttackSpeed": [
+            500,
+            500,
+            500,
+            500,
+            500
+        ],
+        "BuildCost": [
+            0,
+            3000000,
+            4200000,
+            5600000,
+            7000000
+        ],
+        "BuildResource": [
+            "Gold",
+            "Gold",
+            "Gold",
+            "Gold",
+            "Gold"
+        ],
+        "BuildTimeD": [
+            0,
+            1,
+            2,
+            4,
+            5
+        ],
+        "BuildTimeH": [
+            0,
+            12,
+            18,
+            6,
+            12
+        ],
+        "DPS": [
+            150,
+            175,
+            175,
+            200,
+            200
+        ],
+        "DieDamage": [
+            0,
+            0,
+            0,
+            0,
+            1000
+        ],
+        "DieDamageDelay": [
+            0,
+            0,
+            0,
+            0,
+            1600
+        ],
+        "DieDamageRadius": [
+            0,
+            0,
+            0,
+            0,
+            400
+        ],
+        "ExportName": [
+            "town_hall_lvl12_t1",
+            "town_hall_lvl12_t2",
+            "town_hall_lvl12_t3",
+            "town_hall_lvl12_t4",
+            "town_hall_lvl12_t5"
+        ],
+        "GroundTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "HitEffect": [
+            "Tesla Hit",
+            "Tesla Hit",
+            "Tesla Hit",
+            "Tesla Hit",
+            "Tesla Hit"
+        ],
+        "InfoTID": [
+            "TID_TOWN_HALL_WEAPON_INFO",
+            "TID_TOWN_HALL_WEAPON_INFO",
+            "TID_TOWN_HALL_WEAPON_INFO",
+            "TID_TOWN_HALL_WEAPON_INFO",
+            "TID_TOWN_HALL_WEAPON_INFO"
+        ],
+        "Level": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "MultiTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "NumMultiTargets": [
+            2,
+            2,
+            3,
+            3,
+            4
+        ],
+        "PushBack": [
+            120,
+            120,
+            120,
+            120,
+            120
+        ],
+        "SWF": [
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc"
+        ],
+        "StrengthWeight": [
+            700,
+            700,
+            600,
+            600,
+            550
+        ],
+        "TID": [
+            "TID_WEAPON_TOWN_HALL",
+            "TID_WEAPON_TOWN_HALL",
+            "TID_WEAPON_TOWN_HALL",
+            "TID_WEAPON_TOWN_HALL",
+            "TID_WEAPON_TOWN_HALL"
+        ]
+    },
+    "Townhall13": {
+        "ActivationEffect": [
+            "TH13_inferno_activate",
+            "TH13_inferno_activate",
+            "TH13_inferno_activate",
+            "TH13_inferno_activate",
+            "TH13_inferno_activate"
+        ],
+        "AirTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "AttackEffect": [
+            "TH13 Attack 1",
+            "TH13 Attack 1",
+            "TH13 Attack 1",
+            "TH13 Attack 1",
+            "TH13 Attack 2"
+        ],
+        "AttackRange": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+        ],
+        "AttackSpeed": [
+            128,
+            128,
+            128,
+            128,
+            128
+        ],
+        "BuildCost": [
+            0,
+            7500000,
+            9000000,
+            11200000,
+            13500000
+        ],
+        "BuildResource": [
+            "Gold",
+            "Gold",
+            "Gold",
+            "Gold",
+            "Gold"
+        ],
+        "BuildTimeD": [
+            0,
+            4,
+            6,
+            6,
+            8
+        ],
+        "BuildTimeH": [
+            0,
+            12,
+            0,
+            18,
+            6
+        ],
+        "DPS": [
+            200,
+            225,
+            250,
+            275,
+            300
+        ],
+        "DieDamage": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+        ],
+        "DieDamageDelay": [
+            1600,
+            1600,
+            1600,
+            1600,
+            1600
+        ],
+        "DieDamageRadius": [
+            400,
+            400,
+            400,
+            400,
+            400
+        ],
+        "DieDamageSpell": [
+            "TH13Freeze",
+            "TH13Freeze",
+            "TH13Freeze",
+            "TH13Freeze",
+            "TH13Freeze"
+        ],
+        "ExportName": [
+            "town_hall_lvl13_t1",
+            "town_hall_lvl13_t2",
+            "town_hall_lvl13_t3",
+            "town_hall_lvl13_t4",
+            "town_hall_lvl13_t5"
+        ],
+        "GroundTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "HitEffect": [
+            "Dark Tower Hit",
+            "Dark Tower Hit",
+            "Dark Tower Hit",
+            "Dark Tower Hit",
+            "Dark Tower Hit"
+        ],
+        "InfoTID": [
+            "TID_TOWN_HALL_13_WEAPON_INFO",
+            "TID_TOWN_HALL_13_WEAPON_INFO",
+            "TID_TOWN_HALL_13_WEAPON_INFO",
+            "TID_TOWN_HALL_13_WEAPON_INFO",
+            "TID_TOWN_HALL_13_WEAPON_INFO"
+        ],
+        "Level": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "MultiTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "NumMultiTargets": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "PushBack": [
+            120,
+            120,
+            120,
+            120,
+            120
+        ],
+        "SWF": [
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc"
+        ],
+        "StrengthWeight": [
+            550,
+            550,
+            550,
+            550,
+            550
+        ],
+        "TID": [
+            "TID_WEAPON_TOWN_HALL_13",
+            "TID_WEAPON_TOWN_HALL_13",
+            "TID_WEAPON_TOWN_HALL_13",
+            "TID_WEAPON_TOWN_HALL_13",
+            "TID_WEAPON_TOWN_HALL_13"
+        ]
+    },
+    "Townhall14": {
+        "ActivationEffect": [
+            "TH13_inferno_activate",
+            "TH13_inferno_activate",
+            "TH13_inferno_activate",
+            "TH13_inferno_activate",
+            "TH13_inferno_activate"
+        ],
+        "AirTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "AttackEffect": [
+            "TH14 Attack 1",
+            "TH14 Attack 1",
+            "TH14 Attack 1",
+            "TH14 Attack 1",
+            "TH14 Attack 1"
+        ],
+        "AttackRange": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+        ],
+        "AttackSpeed": [
+            128,
+            128,
+            128,
+            128,
+            128
+        ],
+        "BuildCost": [
+            0,
+            8500000,
+            10500000,
+            12300000,
+            14200000
+        ],
+        "BuildResource": [
+            "Gold",
+            "Gold",
+            "Gold",
+            "Gold",
+            "Gold"
+        ],
+        "BuildTimeD": [
+            0,
+            8,
+            10,
+            12,
+            13
+        ],
+        "BuildTimeH": [
+            0,
+            12,
+            12,
+            6,
+            6
+        ],
+        "DPS": [
+            300,
+            300,
+            300,
+            300,
+            300
+        ],
+        "DieDamage": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+        ],
+        "DieDamageDelay": [
+            1600,
+            1600,
+            1600,
+            1600,
+            1600
+        ],
+        "DieDamageRadius": [
+            400,
+            400,
+            400,
+            400,
+            400
+        ],
+        "DieDamageSpell": [
+            "TH14Poison",
+            "TH14Poison",
+            "TH14Poison",
+            "TH14Poison",
+            "TH14Poison"
+        ],
+        "ExportName": [
+            "town_hall_lvl14_t1",
+            "town_hall_lvl14_t2",
+            "town_hall_lvl14_t3",
+            "town_hall_lvl14_t4",
+            "town_hall_lvl14_t5"
+        ],
+        "GroundTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "HitEffect": [
+            "Dark Tower Hit",
+            "Dark Tower Hit",
+            "Dark Tower Hit",
+            "Dark Tower Hit",
+            "Dark Tower Hit"
+        ],
+        "InfoTID": [
+            "TID_WEAPON_TOWN_HALL_14_INFO",
+            "TID_WEAPON_TOWN_HALL_14_INFO",
+            "TID_WEAPON_TOWN_HALL_14_INFO",
+            "TID_WEAPON_TOWN_HALL_14_INFO",
+            "TID_WEAPON_TOWN_HALL_14_INFO"
+        ],
+        "Level": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "MultiTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "NumMultiTargets": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "PushBack": [
+            120,
+            120,
+            120,
+            120,
+            120
+        ],
+        "SWF": [
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc"
+        ],
+        "StrengthWeight": [
+            650,
+            670,
+            690,
+            710,
+            750
+        ],
+        "TID": [
+            "TID_WEAPON_TOWN_HALL_14",
+            "TID_WEAPON_TOWN_HALL_14",
+            "TID_WEAPON_TOWN_HALL_14",
+            "TID_WEAPON_TOWN_HALL_14",
+            "TID_WEAPON_TOWN_HALL_14"
+        ]
+    },
+    "Townhall15": {
+        "ActivationEffect": [
+            "TH13_inferno_activate",
+            "TH13_inferno_activate",
+            "TH13_inferno_activate",
+            "TH13_inferno_activate",
+            "TH13_inferno_activate"
+        ],
+        "AirTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "AttackEffect": [
+            "TH15 Attack 1",
+            "TH15 Attack 1",
+            "TH15 Attack 1",
+            "TH15 Attack 1",
+            "TH15 Attack 1"
+        ],
+        "AttackRange": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+        ],
+        "AttackSpeed": [
+            128,
+            128,
+            128,
+            128,
+            128
+        ],
+        "BuildCost": [
+            0,
+            10000000,
+            12000000,
+            14000000,
+            16000000
+        ],
+        "BuildResource": [
+            "Gold",
+            "Gold",
+            "Gold",
+            "Gold",
+            "Gold"
+        ],
+        "BuildTimeD": [
+            0,
+            9,
+            11,
+            13,
+            14
+        ],
+        "DPS": [
+            300,
+            310,
+            310,
+            320,
+            320
+        ],
+        "DieDamage": [
+            1000,
+            1000,
+            1100,
+            1100,
+            1100
+        ],
+        "DieDamageDelay": [
+            1600,
+            1600,
+            1600,
+            1600,
+            1600
+        ],
+        "DieDamageRadius": [
+            400,
+            400,
+            400,
+            400,
+            450
+        ],
+        "DieDamageSpell": [
+            "TH15Poison",
+            "TH15Poison",
+            "TH15Poison",
+            "TH15Poison",
+            "TH15Poison"
+        ],
+        "ExportName": [
+            "town_hall_lvl15_t1",
+            "town_hall_lvl15_t2",
+            "town_hall_lvl15_t3",
+            "town_hall_lvl15_t4",
+            "town_hall_lvl15_t5"
+        ],
+        "GroundTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "HitEffect": [
+            "Dark Tower Hit",
+            "Dark Tower Hit",
+            "Dark Tower Hit",
+            "Dark Tower Hit",
+            "Dark Tower Hit"
+        ],
+        "InfoTID": [
+            "TID_WEAPON_TOWN_HALL_14_INFO",
+            "TID_WEAPON_TOWN_HALL_14_INFO",
+            "TID_WEAPON_TOWN_HALL_14_INFO",
+            "TID_WEAPON_TOWN_HALL_14_INFO",
+            "TID_WEAPON_TOWN_HALL_14_INFO"
+        ],
+        "Level": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "MultiTargets": [
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "NumMultiTargets": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "PushBack": [
+            120,
+            120,
+            120,
+            120,
+            120
+        ],
+        "SWF": [
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc",
+            "sc/buildings.sc"
+        ],
+        "StrengthWeight": [
+            750,
+            780,
+            810,
+            840,
+            870
+        ],
+        "TID": [
+            "TID_WEAPON_TOWN_HALL_14",
+            "TID_WEAPON_TOWN_HALL_14",
+            "TID_WEAPON_TOWN_HALL_14",
+            "TID_WEAPON_TOWN_HALL_14",
+            "TID_WEAPON_TOWN_HALL_14"
+        ]
+    },
+    "Unused": {
+        "ActivationEffect": [
+            "Goblin Townhall Activate"
+        ],
+        "AirTargets": [
+            true
+        ],
+        "AttackEffect": [
+            "Goblin Townhall Attack"
+        ],
+        "AttackRange": [
+            1000
+        ],
+        "AttackSpeed": [
+            200
+        ],
+        "BuildResource": [
+            "Gold"
+        ],
+        "DPS": [
+            150
+        ],
+        "ExportName": [
+            "goblin_th02"
+        ],
+        "GroundTargets": [
+            true
+        ],
+        "HitEffect": [
+            "Generic Hit"
+        ],
+        "InfoTID": [
+            "TID_TOWN_HALL_WEAPON_INFO"
+        ],
+        "Level": [
+            1
+        ],
+        "MultiTargets": [
+            true
+        ],
+        "NumMultiTargets": [
+            3
+        ],
+        "Projectile": [
+            "Goblin Townhall Arrow"
+        ],
+        "SWF": [
+            "sc/buildings.sc"
+        ],
+        "StrengthWeight": [
+            800
+        ],
+        "TID": [
+            "TID_WEAPON_TOWN_HALL"
+        ]
+    }
+}
