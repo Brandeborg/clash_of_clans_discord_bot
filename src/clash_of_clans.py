@@ -61,6 +61,17 @@ class CoCAPI:
             raise Exception("Something went wrong. The passed clantag may not exist.")
         
     def current_war(self, clantag: str) -> dict:
+        """Fetches a clan's current war data using CoC API
+
+        Args:
+            clantag (str): A CoC clan tag
+
+        Raises:
+            Exception: If status code is not 2xx, raise an exception
+
+        Returns:
+            dict: Current clan war data
+        """
         # replace # with %23 for a properly formatted url
         clantag = urllib.parse.quote(clantag)
 

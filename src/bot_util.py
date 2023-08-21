@@ -93,7 +93,15 @@ async def get_clantag(playertag: str) -> str:
     player = coc.player(playertag)
     return player["clan"]["tag"]
 
-def average_TH(members: list):
+def average_TH(members: list) -> int:
+    """Given a list of CoC members, calculates the average Townhall level
+
+    Args:
+        members (list): A list of CoC war 
+
+    Returns:
+        int: The average TH level
+    """
     n_members = len(members)
     avg_th = 0
     for member in members:

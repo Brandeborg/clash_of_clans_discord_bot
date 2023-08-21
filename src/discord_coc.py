@@ -106,14 +106,14 @@ async def coc_clanname(ctx, playertag: Option(str, "Enter your CoC player tag", 
     State: {cw["state"]}
 
     {us["name"]} (TH lvl {bot_util.average_TH(us["members"])})  
-    {us["stars"]} stars
-    {us["attacks"]} attacks
+    {us["stars"]} / {cw["teamSize"] * 3} stars
+    {us["attacks"]} / {cw["teamSize"] * 2} attacks
 
     vs. 
     
     {op["name"]} (TH lvl {bot_util.average_TH(op["members"])})
-    {op["stars"]} stars
-    {op["attacks"]} attacks
+    {op["stars"]} / {cw["teamSize"] * 3} stars
+    {op["attacks"]} / {cw["teamSize"] * 2} attacks
     """
 
     # send response
