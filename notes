@@ -1,0 +1,1 @@
+The clantag extraction process is the same for most commands. It should be wrapped in a function to avoid duplicate code.

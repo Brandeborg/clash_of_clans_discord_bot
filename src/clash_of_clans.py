@@ -33,6 +33,7 @@ class CoCAPI:
         if res.status_code // 100 == 2:
             return res.json()
         else:
+            print(res.status_code)
             raise Exception("Something went wrong. The passed playertag may not exist.")
         
     def clan(self, clantag: str) -> dict:
@@ -56,5 +57,19 @@ class CoCAPI:
         if res.status_code // 100 == 2:
             return res.json()
         else:
+            print(res.status_code)
+            raise Exception("Something went wrong. The passed clantag may not exist.")
+        
+    def current_war(self, clantag: str) -> dict:
+        # replace # with %23 for a properly formatted url
+        clantag = urllib.parse.quote(clantag)
+
+        with httpx.Client() as client: 
+            res = client.get(f"{self.base_url}/clans/{clantag}/currentwar", headers=self.headers)
+
+        if res.status_code // 100 == 2:
+            return res.json()
+        else:
+            print(res.status_code)
             raise Exception("Something went wrong. The passed clantag may not exist.")
 

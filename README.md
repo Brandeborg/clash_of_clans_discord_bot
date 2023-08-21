@@ -16,3 +16,7 @@ https://discordpy.readthedocs.io/en/latest/ext/commands/api.html#discord.ext.com
 
 httpx docs
 https://www.python-httpx.org/advanced/
+
+create discord embed
+https://stackoverflow.com/questions/44862112/how-can-i-send-an-embed-via-my-discord-bot-w-python
+https://discordpy.readthedocs.io/en/stable/api.html#embed
