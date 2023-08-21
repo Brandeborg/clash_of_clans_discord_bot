@@ -19,7 +19,7 @@ coc = clash_of_clans.CoCAPI()
 async def coc_playername(ctx, playertag: Option(str, "Enter your CoC player tag", required=False, default=None)):
     """Sends a response containing a Clash of Clans player name, 
     either by looking up an explicitly passed playertag or by extracting a playertag from
-    the discord user's displayname.
+    the discord user's display name.
 
     Args:
         ctx (_type_): Discord context, containing attributes such as displayname and functions
@@ -38,6 +38,52 @@ async def coc_playername(ctx, playertag: Option(str, "Enter your CoC player tag"
         return await ctx.respond(e)
     
     # format response
+
+    # send response
+    await ctx.respond(player["name"])
+
+@bot.slash_command(name="player_progress_th", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
+async def coc_playername(ctx, playertag: Option(str, "Enter your CoC player tag", required=False, default=None)):
+    """Sends a response containing a Clash of Clans player's progress of upgrading:
+    - heroes
+    - troops ("characters")
+    - pets
+
+    either by looking up an explicitly passed player tag or by extracting a player tag from
+    the discord user's display name.
+
+    Args:
+        ctx (_type_): Discord context, containing attributes such as displayname and functions
+        playertag (Option, optional): A CoC player tag. Defaults to False, default=None).
+
+    Returns:
+        None: Returns nothing
+    """
+    # fetch data from CoC API
+    try:
+        playertag = await bot_util.get_playertag(ctx.author.display_name) if not playertag else playertag
+        playertag = bot_util.add_octothorpe(playertag)
+        bot_util.validate_tag(playertag)
+        player = coc.player(playertag)
+    except Exception as e:
+        return await ctx.respond(e)
+    
+    # extract max levels from static files
+    player_th_lvl = player["townHallLevel"]
+    
+    ## heroes
+    hero_maxes = bot_util.get_max_lvls(player_th_lvl, "heroes", "RequiredTownHallLevel")
+
+    del hero_maxes["Battle Copter"]
+    del hero_maxes["Warmachine"]
+    hero_maxes["Royal Champion"] = hero_maxes["Warrior Princess"]
+    del hero_maxes["Warrior Princess"]
+
+    ## troops
+
+
+    # format response
+
 
     # send response
     await ctx.respond(player["name"])

@@ -1,7 +1,9 @@
 import re
+import json
 
 import clash_of_clans
 coc = clash_of_clans.CoCAPI()
+
 
 def extract_playertag(displayname: str):
     """Get CoC playertag from Discord display name
@@ -9,7 +11,7 @@ def extract_playertag(displayname: str):
     Args:
         displayname (str): Discord display name, which should contain a CoC playertag
     """
-    
+
     match = re.search(r'\((.*?)\)', displayname)
     if match == None:
         raise Exception(
@@ -17,8 +19,9 @@ def extract_playertag(displayname: str):
             Invalid formatting of display name, should be: 
             \"Name (<COC_PLAYERTAG>)\"
             """)
-    
+
     return match.group(1)
+
 
 def validate_tag(tag: str):
     """Make sure a tag is of the right format (10 digits)
@@ -33,7 +36,8 @@ def validate_tag(tag: str):
             \"1BCDEFGH9\"
             \"#1BCDEFGH9\"
             """)
-    
+
+
 def add_octothorpe(tag: str) -> str:
     """Adds a "#" to a tag if it does not already contrain one.
 
@@ -48,6 +52,7 @@ def add_octothorpe(tag: str) -> str:
 
     return tag
 
+
 async def handle_clantag_options(displayname: str, playertag: str, clantag: str) -> str:
     """A discord user can get clan info by multiple means:
     - directly passing clan tag
@@ -60,11 +65,11 @@ async def handle_clantag_options(displayname: str, playertag: str, clantag: str)
         displayname (str): A Discord display name
         playertag (str): A CoC player tag, might be empty
         clantag (str): A CoC clan tag, might be empty
-    
+
     Returns:
         str: A clantag
     """
-    
+
     if not clantag:
         playertag = await get_playertag(displayname) if not playertag else playertag
         playertag = add_octothorpe(playertag)
@@ -75,11 +80,13 @@ async def handle_clantag_options(displayname: str, playertag: str, clantag: str)
         validate_tag(clantag)
 
         return clantag
-    
+
+
 async def get_playertag(displayname: str):
     """Just a wrapper
     """
     return extract_playertag(displayname)
+
 
 async def get_clantag(playertag: str) -> str:
     """Fetches a player from CoC API and extracts the clan tag.
@@ -92,6 +99,7 @@ async def get_clantag(playertag: str) -> str:
     """
     player = coc.player(playertag)
     return player["clan"]["tag"]
+
 
 def average_TH(members: list) -> int:
     """Given a list of CoC members, calculates the average Townhall level
@@ -108,3 +116,72 @@ def average_TH(members: list) -> int:
         avg_th += member["townhallLevel"] / n_members
 
     return round(avg_th, 2)
+
+
+def get_max_lvls(th_lvl: int, item_group: str, rq_th_key="RequiredTownHallLevel") -> dict:
+    """Constructs a dict of max levels for each item in the item_group (ex: heroes)
+    based on the Town Hall level
+
+    Args:
+        th_lvl (int): A player's current town hall level
+        item_group (str): One of these item groups: "heroes", "characters", "buildings", "pets", "traps", "spells"
+        rq_th_key (str, optional): The key used to access the list of "Required Townhall Levels". 
+                                   It varies from file to file. Defaults to "RequiredTownHallLevel".
+
+    Returns:
+        dict: A mapping from item to max level. Ex: {"Archer Queen": 50}
+    """
+    max_lvls = {}
+
+    item_group: dict = load_json(f"../assets/{item_group}.json")
+
+    for key in item_group:
+        max_lvls[key] = get_maxlvl_from_required_th(
+            item_group[key][rq_th_key], th_lvl)
+
+    return max_lvls
+
+
+def get_maxlvl_from_required_th(required_th_lvls: list, th_lvl: int) -> int:
+    """Deduce the maximum item level from a list of "required townhall levels" of the form: 
+    [9, 9, 9, 9, 9, 10, 10, 10, ...]
+
+    Args:
+        required_th_lvls (list): A list of required town hall levels, where each index is the level of the item. 
+                                 In this example, [9,9,9,10,10,11,11], a townhall level 10 is required for reaching level
+                                 4, so the max level for th 9 is 3.
+        th_lvl (int): A player's current town hall level
+
+    Returns:
+        int: The max level of a given item (hero, building, etc.)
+    """
+    # if smallest required th is larger than current th, max lvl is 0
+    if required_th_lvls[0] > th_lvl:
+        return 0
+
+    # in case that curr_th_lvl == max_th_lvl
+    init_max = len(required_th_lvls)
+
+    for i, rq_th in enumerate(required_th_lvls):
+        if rq_th == th_lvl+1:
+            return i
+
+    return init_max
+
+def get_item_upgrade_cost_current() -> int:
+    pass
+
+def get_item_upgrade_cost_maxed() -> int:
+    pass
+
+def load_json(filename: str) -> dict:
+    """Loads a JSON file into a dics
+
+    Args:
+        filename (str): path to json file
+
+    Returns:
+        dict: _description_
+    """
+    with open(filename) as jsonf:
+        return json.load(jsonf)
