@@ -7,7 +7,10 @@ More notes:
 - Need to consider barracks when reporting max troop levels
 - Need to create a system for translating static game-file troop names to in-game dispay names given by API, 
     and to filter out builder troops etc, so only home village troops are reported.
+    - When extracting the max data, use different criteria such as "Does it contain 'TUTORIAL', and whcih resource type
+    is used to upgrade it.
 - Might consider creating a "troop" class to hold the needed data for each troop, such as:
     - current level
     - upgade costs per level
     - function to fetch max level for current th
+
