@@ -1,6 +1,13 @@
-The clantag extraction process is the same for most commands. It should be wrapped in a function to avoid duplicate code.
-
-Have to stop because CoC API is down. Currently doing: 
+Currently doing: 
 - Create function to extract "current level" of each "unit".
 - Use that and the "max level pr th" to create "paid cost / max cost" stat
 - Do the same to troops and spells and TH weapon
+
+More notes:
+- Need to consider barracks when reporting max troop levels
+- Need to create a system for translating static game-file troop names to in-game dispay names given by API, 
+    and to filter out builder troops etc, so only home village troops are reported.
+- Might consider creating a "troop" class to hold the needed data for each troop, such as:
+    - current level
+    - upgade costs per level
+    - function to fetch max level for current th

@@ -73,14 +73,37 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     
     ## heroes
     hero_maxes = bot_util.get_max_lvls(player_th_lvl, "heroes", "RequiredTownHallLevel")
-
-    del hero_maxes["Battle Copter"]
     del hero_maxes["Warmachine"]
-    hero_maxes["Royal Champion"] = hero_maxes["Warrior Princess"]
-    del hero_maxes["Warrior Princess"]
+    del hero_maxes["Battle Copter"]
 
     hero_actuals = bot_util.get_current_lvls(player["heroes"])
-    print(hero_actuals)
+    del hero_actuals["Battle Machine"]
+    del hero_actuals["Battle Copter"]
+
+    name_map = bot_util.load_json("../assets/unit_name_map.json")
+
+    result = {}
+    for hero in hero_maxes:
+        hero_actual = hero_actuals[name_map[hero]] if hero in hero_actuals else 0
+        hero_max = hero_maxes[hero]
+        result[hero] = (hero_actual, hero_max)
+
+    # troops
+    th_lab_map = bot_util.get_th_lab_map()
+    player_lab_level = th_lab_map[player_th_lvl]
+    # NOTE: Need to also look at barrack level for troops. Maybe a new func that checks it after looking at lab level
+    troop_maxes = bot_util.get_max_lvls(player_lab_level, "characters", "LaboratoryLevel")
+
+    troop_actuals = bot_util.get_current_lvls(player["troops"])
+
+    name_map = bot_util.load_json("../assets/unit_name_map.json")
+
+    result = {}
+    for troop in troop_maxes:
+        troop_actual = troop_actuals[troop] if troop in troop_actuals else 0
+        troop_max = troop_maxes[troop]
+        result[troop] = (troop_actual, troop_max)
+    print(result)
 
     ## troops
 

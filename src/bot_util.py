@@ -123,10 +123,11 @@ def get_max_lvls(th_lvl: int, item_group: str, rq_th_key="RequiredTownHallLevel"
     based on the Town Hall level
 
     Args:
-        th_lvl (int): A player's current town hall level
+        th_lvl (int): A player's current town hall level, might sometimes be laboratory level
         item_group (str): One of these item groups: "heroes", "characters", "buildings", "pets", "traps", "spells"
         rq_th_key (str, optional): The key used to access the list of "Required Townhall Levels". 
-                                   It varies from file to file. Defaults to "RequiredTownHallLevel".
+                                   It varies from file to file. Might sometimes be lab level.
+                                   Defaults to "RequiredTownHallLevel".
 
     Returns:
         dict: A mapping from item to max level. Ex: {"Archer Queen": 50}
@@ -136,6 +137,8 @@ def get_max_lvls(th_lvl: int, item_group: str, rq_th_key="RequiredTownHallLevel"
     item_group: dict = load_json(f"../assets/{item_group}.json")
 
     for key in item_group:
+        if rq_th_key not in item_group[key]:
+            continue
         max_lvls[key] = get_maxlvl_from_required_th(
             item_group[key][rq_th_key], th_lvl)
 
@@ -146,6 +149,7 @@ def get_current_lvls(units: list) -> dict:
     for unit in units:
         current_lvls[unit["name"]] = unit["level"]
 
+    return current_lvls
 
 def get_maxlvl_from_required_th(required_th_lvls: list, th_lvl: int) -> int:
     """Deduce the maximum item level from a list of "required townhall levels" of the form: 
@@ -173,6 +177,9 @@ def get_maxlvl_from_required_th(required_th_lvls: list, th_lvl: int) -> int:
 
     return init_max
 
+def check_troop_is_available_th(th_lvl: int) -> bool:
+    pass
+
 def get_item_upgrade_progress(item_upgrade_costs: list, item_lvl: int, max: bool = False,) -> int:
     """Gets the "cost" of upgrading a certain item to item_lvl. "Cost" can mean either time or resources.
 
@@ -187,6 +194,19 @@ def get_item_upgrade_progress(item_upgrade_costs: list, item_lvl: int, max: bool
     n = len(item_upgrade_costs) if max else item_lvl 
     
     return sum(item_upgrade_costs[:n])
+
+def get_th_lab_map() -> dict:
+    """Get a mapping from "Thownhall level" to the associated max level of the laboratory.
+    Some units report the "required lab level" instead of "required th level", so this is needed.
+
+    Returns:
+        dict: {th_level: lab_level, ...}
+    """
+    buildings = load_json("../assets/buildings.json")
+    lab_th_levels = buildings["Laboratory"]["TownHallLevel"]
+    th_lab_map = {th_lvl: i+1 for i, th_lvl in enumerate(lab_th_levels)}
+
+    return th_lab_map
 
 def load_json(filename: str) -> dict:
     """Loads a JSON file into a dict
