@@ -7,6 +7,7 @@ import re
 import bot_util
 import clash_of_clans
 from hero import Hero
+from troop import Troop
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -71,11 +72,11 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
         return await ctx.respond(e)
     
     player_th_lvl = player["townHallLevel"]
+    translation = bot_util.load_json("../assets/texts_EN.json")
+    unit_groups = bot_util.load_json("../assets/unit_groups.json")
     
     ## heroes
     heroes_static = bot_util.load_json("../assets/heroes.json")
-    translation = bot_util.load_json("../assets/texts_EN.json")
-    unit_groups = bot_util.load_json("../assets/unit_groups.json")
 
     heores = []
     for hero_static in heroes_static.values():
@@ -87,17 +88,44 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
 
         if not hero_active:
             hero_active = {"level": 0}
-        hero = Hero(curr_level=hero_active["level"], name=name, unit_static=hero_static, th_level=player_th_lvl)
-
-        print(hero.name)
-        print(hero.curr_level)
-        print(hero.max_level_th)
-        print(hero.max_level)
+        hero = Hero(curr_level=hero_active["level"], name=name, unit_static=hero_static)
 
         heores.append(hero)
 
-    print(heores)
+    ## troops
+    troops_static = bot_util.load_json("../assets/characters.json")
 
+    troops = []
+    for sc_name, troop_static in troops_static.items():
+        if "TID" not in troop_static: 
+            continue
+
+        if "Tutorial" in sc_name:
+            continue
+
+        if "DisableProduction" in troop_static:
+            continue
+
+        if troop_static["ProductionBuilding"][0] == "Barrack2":
+            continue
+        
+        name = translation[troop_static["TID"][0]][0] 
+        if name not in unit_groups["home_troops"]:
+            continue
+
+        troop_active = bot_util.search_unit(name, player["troops"])
+
+        if not troop_active:
+            troop_active = {"level": 0}
+        troop = Troop(curr_level=troop_active["level"], name=name, unit_static=troop_static)
+
+        troops.append(troop)
+
+        print(troop.name)
+        print(troop.curr_level)
+        print(troop.get_max_level_th(player_th_lvl))
+        print(troop.get_max_level())
+        print("\n")
 
     # format response
 

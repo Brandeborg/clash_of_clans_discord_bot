@@ -222,6 +222,16 @@ def get_th_lab_map() -> dict:
 
     return th_lab_map
 
+def troop_is_available_th(production_building: str, th_level: int) -> bool:
+    """
+
+    Returns:
+        dict: 
+    """
+    buildings = load_json("../assets/buildings.json")
+    barrack_th_levels = buildings[production_building]["TownHallLevel"]
+    return th_level in barrack_th_levels
+
 def load_json(filename: str) -> dict:
     """Loads a JSON file into a dict
 
