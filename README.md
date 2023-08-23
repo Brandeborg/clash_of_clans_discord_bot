@@ -51,3 +51,7 @@ townhall_levels.json
 traps.json
 upgrade_tasks.json
 weapons.json
+
+
+# Modules
+if using py-cord, discord.py needs to be uninstalled

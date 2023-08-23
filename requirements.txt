@@ -1,4 +1,3 @@
 httpx
 py-cord
-discord.py
 python-dotenv

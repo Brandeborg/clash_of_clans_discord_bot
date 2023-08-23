@@ -3,8 +3,10 @@ from discord.commands import Option
 from discord.ext import commands
 import os
 import re
+
 import bot_util
 import clash_of_clans
+from hero import Hero
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -68,44 +70,33 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     except Exception as e:
         return await ctx.respond(e)
     
-    # extract max levels from static files
     player_th_lvl = player["townHallLevel"]
     
     ## heroes
-    hero_maxes = bot_util.get_max_lvls(player_th_lvl, "heroes", "RequiredTownHallLevel")
-    del hero_maxes["Warmachine"]
-    del hero_maxes["Battle Copter"]
+    heroes_static = bot_util.load_json("../assets/heroes.json")
+    translation = bot_util.load_json("../assets/texts_EN.json")
+    unit_groups = bot_util.load_json("../assets/unit_groups.json")
 
-    hero_actuals = bot_util.get_current_lvls(player["heroes"])
-    del hero_actuals["Battle Machine"]
-    del hero_actuals["Battle Copter"]
+    heores = []
+    for hero_static in heroes_static.values():
+        name = translation[hero_static["TID"][0]][0]
+        if name not in unit_groups["home_heroes"]:
+            continue
 
-    name_map = bot_util.load_json("../assets/unit_name_map.json")
+        hero_active = bot_util.search_unit(name, player["heroes"])
 
-    result = {}
-    for hero in hero_maxes:
-        hero_actual = hero_actuals[name_map[hero]] if hero in hero_actuals else 0
-        hero_max = hero_maxes[hero]
-        result[hero] = (hero_actual, hero_max)
+        if not hero_active:
+            hero_active = {"level": 0}
+        hero = Hero(curr_level=hero_active["level"], name=name, unit_static=hero_static, th_level=player_th_lvl)
 
-    # troops
-    th_lab_map = bot_util.get_th_lab_map()
-    player_lab_level = th_lab_map[player_th_lvl]
-    # NOTE: Need to also look at barrack level for troops. Maybe a new func that checks it after looking at lab level
-    troop_maxes = bot_util.get_max_lvls(player_lab_level, "characters", "LaboratoryLevel")
+        print(hero.name)
+        print(hero.curr_level)
+        print(hero.max_level_th)
+        print(hero.max_level)
 
-    troop_actuals = bot_util.get_current_lvls(player["troops"])
+        heores.append(hero)
 
-    name_map = bot_util.load_json("../assets/unit_name_map.json")
-
-    result = {}
-    for troop in troop_maxes:
-        troop_actual = troop_actuals[troop] if troop in troop_actuals else 0
-        troop_max = troop_maxes[troop]
-        result[troop] = (troop_actual, troop_max)
-    print(result)
-
-    ## troops
+    print(heores)
 
 
     # format response

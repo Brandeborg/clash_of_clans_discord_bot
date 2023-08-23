@@ -180,6 +180,20 @@ def get_maxlvl_from_required_th(required_th_lvls: list, th_lvl: int) -> int:
 def check_troop_is_available_th(th_lvl: int) -> bool:
     pass
 
+def search_unit(name: str, units: list[dict]) -> dict:
+    """Search for a unit in a list of unit dics, where the dict contains a name field
+
+    Args:
+        name (str): A unit name
+        units (list[dict]): A list of units in dicts
+
+    Returns:
+        dict: A dict of the unit details
+    """
+    for unit in units:
+        if unit["name"] == name:
+            return unit
+
 def get_item_upgrade_progress(item_upgrade_costs: list, item_lvl: int, max: bool = False,) -> int:
     """Gets the "cost" of upgrading a certain item to item_lvl. "Cost" can mean either time or resources.
 
