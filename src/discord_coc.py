@@ -122,8 +122,9 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
         troops.append(troop)
 
     # format response
+    display_lists = [None] * len(troops)
+    troop_order = unit_groups["home_troops"]
 
-    display_lists = []
     for troop in troops:
         display_list = []
         
@@ -155,7 +156,8 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
         # resource
         display_list.append(troop.get_upgrade_resource())
 
-        display_lists.append(display_list)
+        i = troop_order.index(troop.name)
+        display_lists[i] = display_list
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]
