@@ -52,6 +52,8 @@ traps.json
 upgrade_tasks.json
 weapons.json
 
+plot dataframe table
+https://stackoverflow.com/questions/32137396/how-do-i-plot-only-a-table-in-matplotlib
 
 # Modules
 if using py-cord, discord.py needs to be uninstalled

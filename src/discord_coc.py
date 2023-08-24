@@ -1,8 +1,8 @@
 from textwrap import dedent
 from discord.commands import Option
 from discord.ext import commands
+import discord
 import os
-import re
 
 import bot_util
 import clash_of_clans
@@ -122,16 +122,48 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
         troops.append(troop)
 
     # format response
-    headers = ["name", "level", "time", "cost"]
-    names = [troop.name for troop in troops]
-    longest_name = max(names, key=len)
-    print(longest_name)
-    response = ""
+
+    display_lists = []
     for troop in troops:
-        response += ""
+        display_list = []
+        
+        # name
+        display_list.append(troop.name)
+
+        # level
+        max_level = troop.get_max_level_th(player_th_lvl)
+        levels = f"{troop.curr_level} / {max_level}"
+        display_list.append(levels)
+
+        # time
+        curr_time = troop.get_upgrade_time(troop.curr_level)
+        dspl_curr_time = bot_util.display_hours_as_days(curr_time)
+        max_time = troop.get_upgrade_time(max_level)
+        dspl_max_time = bot_util.display_hours_as_days(max_time)
+
+        time = f"{dspl_curr_time}{' / '}{dspl_max_time}"
+        display_list.append(time)
+
+        # cost
+        curr_cost = bot_util.display_large_number(troop.get_upgrade_cost(troop.curr_level))
+        max_cost = bot_util.display_large_number(troop.get_upgrade_cost(max_level))
+
+        cost = f"{curr_cost}{' / '}{max_cost}"
+
+        display_list.append(cost)
+
+        # resource
+        display_list.append(troop.get_upgrade_resource())
+
+        display_lists.append(display_list)
+
+    plt_file_path = '../pngs/temp.png'
+    columns = ["Name", "Level", "Time", "Cost", "Resource"]
+    bot_util.plot_table(rows=display_lists, columns=columns, file_path=plt_file_path)
 
     # send response
-    await ctx.respond(player["name"])
+    await ctx.respond(file=discord.File(plt_file_path))
+    os.remove(plt_file_path)
 
 @bot.slash_command(name="clan_name", description="Returns the player's Clash of Clans clan name", guild_ids=[DISCORD_SERVER_ID])
 async def coc_clanname(ctx, playertag: Option(str, "Enter your CoC player tag", required=False, default=None),

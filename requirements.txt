@@ -1,3 +1,5 @@
 httpx
 py-cord
-python-dotenv
+python-
+pandas
+matplotlib

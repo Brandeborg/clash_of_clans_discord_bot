@@ -24,7 +24,7 @@ class Unit(ABC):
         if h_key in self.unit_static:
             upgrade_time += sum(self.unit_static[h_key][:level])
 
-        if h_key in self.unit_static:
+        if d_key in self.unit_static:
             upgrade_time += sum(self.unit_static[d_key][:level]) * 24
 
         return upgrade_time

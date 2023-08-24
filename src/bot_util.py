@@ -1,5 +1,7 @@
 import re
 import json
+import pandas as pd
+import matplotlib.pyplot as plt
 
 import clash_of_clans
 coc = clash_of_clans.CoCAPI()
@@ -167,6 +169,9 @@ def display_hours_as_days(hours: int) -> str:
 
     return f"{d}d {h}h"
 
+def display_large_number(number: int) -> str:
+    return f'{number:,}'
+
 def load_json(filename: str) -> dict:
     """Loads a JSON file into a dict
 
@@ -178,3 +183,18 @@ def load_json(filename: str) -> dict:
     """
     with open(filename) as jsonf:
         return json.load(jsonf)
+
+def plot_table(rows: list, columns: list, file_path: str):
+    df = pd.DataFrame(rows, columns=columns)
+
+    fig, ax = plt.subplots(dpi=300)
+    # hide axes
+    fig.patch.set_visible(False)
+    ax.axis('off')
+    ax.axis('tight')
+
+    ax.table(cellText=df.values, colLabels=df.columns, loc='center')
+
+    fig.tight_layout()
+
+    plt.savefig(file_path)
