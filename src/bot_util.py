@@ -193,7 +193,11 @@ def plot_table(rows: list, columns: list, file_path: str):
     ax.axis('off')
     ax.axis('tight')
 
-    ax.table(cellText=df.values, colLabels=df.columns, loc='center')
+    tab = ax.table(cellText=df.values, colLabels=df.columns, loc='center')
+
+    tab.auto_set_column_width(col=list(range(len(columns))))
+    tab.auto_set_font_size(False)
+    tab.set_fontsize(8)
 
     fig.tight_layout()
 
