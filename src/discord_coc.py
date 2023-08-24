@@ -121,14 +121,14 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
 
         troops.append(troop)
 
-        print(troop.name)
-        print(troop.curr_level)
-        print(troop.get_max_level_th(player_th_lvl))
-        print(troop.get_max_level())
-        print("\n")
-
     # format response
-
+    headers = ["name", "level", "time", "cost"]
+    names = [troop.name for troop in troops]
+    longest_name = max(names, key=len)
+    print(longest_name)
+    response = ""
+    for troop in troops:
+        response += ""
 
     # send response
     await ctx.respond(player["name"])

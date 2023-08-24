@@ -1,0 +1,12 @@
+{
+    "resource": {
+        "DarkElixir": "Dark Elixir",
+        "Elixir": "Elixir",
+        "Elixir2": "Builder Elixir",
+        "Gold": "GOLD",
+        "Gold2": "Builder Gold"
+    },
+    "war": {
+        "inWar": "Battle Day"
+    }
+}

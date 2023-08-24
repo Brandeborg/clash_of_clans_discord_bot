@@ -69,7 +69,6 @@ async def handle_clantag_options(displayname: str, playertag: str, clantag: str)
     Returns:
         str: A clantag
     """
-
     if not clantag:
         playertag = await get_playertag(displayname) if not playertag else playertag
         playertag = add_octothorpe(playertag)
@@ -117,98 +116,6 @@ def average_TH(members: list) -> int:
 
     return round(avg_th, 2)
 
-
-def get_max_lvls(th_lvl: int, item_group: str, rq_th_key="RequiredTownHallLevel") -> dict:
-    """Constructs a dict of max levels for each item in the item_group (ex: heroes)
-    based on the Town Hall level
-
-    Args:
-        th_lvl (int): A player's current town hall level, might sometimes be laboratory level
-        item_group (str): One of these item groups: "heroes", "characters", "buildings", "pets", "traps", "spells"
-        rq_th_key (str, optional): The key used to access the list of "Required Townhall Levels". 
-                                   It varies from file to file. Might sometimes be lab level.
-                                   Defaults to "RequiredTownHallLevel".
-
-    Returns:
-        dict: A mapping from item to max level. Ex: {"Archer Queen": 50}
-    """
-    max_lvls = {}
-
-    item_group: dict = load_json(f"../assets/{item_group}.json")
-
-    for key in item_group:
-        if rq_th_key not in item_group[key]:
-            continue
-        max_lvls[key] = get_maxlvl_from_required_th(
-            item_group[key][rq_th_key], th_lvl)
-
-    return max_lvls
-
-def get_current_lvls(units: list) -> dict:
-    current_lvls = {}
-    for unit in units:
-        current_lvls[unit["name"]] = unit["level"]
-
-    return current_lvls
-
-def get_maxlvl_from_required_th(required_th_lvls: list, th_lvl: int) -> int:
-    """Deduce the maximum item level from a list of "required townhall levels" of the form: 
-    [9, 9, 9, 9, 9, 10, 10, 10, ...]
-
-    Args:
-        required_th_lvls (list): A list of required town hall levels, where each index is the level of the item. 
-                                 In this example, [9,9,9,10,10,11,11], a townhall level 10 is required for reaching level
-                                 4, so the max level for th 9 is 3.
-        th_lvl (int): A player's current town hall level
-
-    Returns:
-        int: The max level of a given item (hero, building, etc.)
-    """
-    # if smallest required th is larger than current th, max lvl is 0
-    if required_th_lvls[0] > th_lvl:
-        return 0
-
-    # in case that curr_th_lvl == max_th_lvl
-    init_max = len(required_th_lvls)
-
-    for i, rq_th in enumerate(required_th_lvls):
-        if rq_th == th_lvl+1:
-            return i
-
-    return init_max
-
-def check_troop_is_available_th(th_lvl: int) -> bool:
-    pass
-
-def search_unit(name: str, units: list[dict]) -> dict:
-    """Search for a unit in a list of unit dics, where the dict contains a name field
-
-    Args:
-        name (str): A unit name
-        units (list[dict]): A list of units in dicts
-
-    Returns:
-        dict: A dict of the unit details
-    """
-    for unit in units:
-        if unit["name"] == name:
-            return unit
-
-def get_item_upgrade_progress(item_upgrade_costs: list, item_lvl: int, max: bool = False,) -> int:
-    """Gets the "cost" of upgrading a certain item to item_lvl. "Cost" can mean either time or resources.
-
-    Args:
-        item_upgrade_costs (list): A list of upgrade costs for each lvl. 
-        item_lvl (int): Item level up to which costs are added
-        max (bool, optional): If true, sums all lvl costs. Defaults to False.
-
-    Returns:
-        int: Cost of upgrading item to item_lvl
-    """
-    n = len(item_upgrade_costs) if max else item_lvl 
-    
-    return sum(item_upgrade_costs[:n])
-
 def get_th_lab_map() -> dict:
     """Get a mapping from "Thownhall level" to the associated max level of the laboratory.
     Some units report the "required lab level" instead of "required th level", so this is needed.
@@ -223,7 +130,7 @@ def get_th_lab_map() -> dict:
     return th_lab_map
 
 def troop_is_available_th(production_building: str, th_level: int) -> bool:
-    """
+    """Check whether a troop can be available in the Barracks at th_level
 
     Returns:
         dict: 
@@ -231,6 +138,34 @@ def troop_is_available_th(production_building: str, th_level: int) -> bool:
     buildings = load_json("../assets/buildings.json")
     barrack_th_levels = buildings[production_building]["TownHallLevel"]
     return th_level in barrack_th_levels
+
+def search_unit(name: str, units: list[dict]) -> dict:
+    """Search for a unit in a list of unit dics, where the dict contains a name field
+
+    Args:
+        name (str): A unit name
+        units (list[dict]): A list of units in dicts
+
+    Returns:
+        dict: A dict of the unit details
+    """
+    for unit in units:
+        if unit["name"] == name:
+            return unit
+        
+def display_hours_as_days(hours: int) -> str:
+    """Convert hours to days and hours, ex: 36 hours -> 1d 12h
+
+    Args:
+        hours (int): _description_
+
+    Returns:
+        str: _description_
+    """
+    d = hours // 24
+    h = hours % 24
+
+    return f"{d}d {h}h"
 
 def load_json(filename: str) -> dict:
     """Loads a JSON file into a dict
