@@ -133,6 +133,7 @@ def get_th_lab_map() -> dict:
 
 def troop_is_available_th(production_building: str, th_level: int) -> bool:
     """Check whether a troop can be available in the Barracks at th_level
+    TODO: Move this to Troop class
 
     Returns:
         dict: 

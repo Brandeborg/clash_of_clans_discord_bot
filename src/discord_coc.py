@@ -1,3 +1,4 @@
+import asyncio
 from textwrap import dedent
 from discord.commands import Option
 from discord.ext import commands
@@ -62,6 +63,10 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     Returns:
         None: Returns nothing
     """
+    # it can happen, that the command cannot respond with image within 3 seconds,
+    # so we need to send an inital response, after which there are 15 minutes to respond
+    await ctx.defer()
+
     # fetch data from CoC API
     try:
         playertag = await bot_util.get_playertag(ctx.author.display_name) if not playertag else playertag
@@ -78,19 +83,21 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     ## heroes
     heroes_static = bot_util.load_json("../assets/heroes.json")
 
-    heores = []
-    for hero_static in heroes_static.values():
-        name = translation[hero_static["TID"][0]][0]
+    heroes = []
+    for sc_name, hero_static in heroes_static.items():
+        if "TID" not in hero_static: 
+            continue
+        
+        name = translation[hero_static["TID"][0]][0] 
         if name not in unit_groups["home_heroes"]:
             continue
 
         hero_active = bot_util.search_unit(name, player["heroes"])
-
         if not hero_active:
             hero_active = {"level": 0}
         hero = Hero(curr_level=hero_active["level"], name=name, unit_static=hero_static)
 
-        heores.append(hero)
+        heroes.append(hero)
 
     ## troops
     troops_static = bot_util.load_json("../assets/characters.json")
@@ -122,13 +129,23 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
         troops.append(troop)
 
     # format response
+    ## heroes
+    hero_order = unit_groups["home_heroes"]
+
+    displayed_heroes = Hero.display_units(heroes, hero_order, player_th_lvl)
+
+    plt_file_path = '../pngs/temp.png'
+    columns = ["Name", "Level", "Time", "Cost", "Resource"]
+    bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path)
+
+    ## troops
     troop_order = unit_groups["home_troops"]
 
     displayed_troops = Troop.display_units(troops, troop_order, player_th_lvl)
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]
-    bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path)
+    # bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path)
 
     # send response
     await ctx.respond(file=discord.File(plt_file_path))
