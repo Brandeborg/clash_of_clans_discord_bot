@@ -122,46 +122,13 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
         troops.append(troop)
 
     # format response
-    display_lists = [None] * len(troops)
     troop_order = unit_groups["home_troops"]
 
-    for troop in troops:
-        display_list = []
-        
-        # name
-        display_list.append(troop.name)
-
-        # level
-        max_level = troop.get_max_level_th(player_th_lvl)
-        levels = f"{troop.curr_level} / {max_level}"
-        display_list.append(levels)
-
-        # time
-        curr_time = troop.get_upgrade_time(troop.curr_level)
-        dspl_curr_time = bot_util.display_hours_as_days(curr_time)
-        max_time = troop.get_upgrade_time(max_level)
-        dspl_max_time = bot_util.display_hours_as_days(max_time)
-
-        time = f"{dspl_curr_time}{' / '}{dspl_max_time}"
-        display_list.append(time)
-
-        # cost
-        curr_cost = bot_util.display_large_number(troop.get_upgrade_cost(troop.curr_level))
-        max_cost = bot_util.display_large_number(troop.get_upgrade_cost(max_level))
-
-        cost = f"{curr_cost}{' / '}{max_cost}"
-
-        display_list.append(cost)
-
-        # resource
-        display_list.append(troop.get_upgrade_resource())
-
-        i = troop_order.index(troop.name)
-        display_lists[i] = display_list
+    displayed_troops = Troop.display_units(troops, troop_order, player_th_lvl)
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]
-    bot_util.plot_table(rows=display_lists, columns=columns, file_path=plt_file_path)
+    bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path)
 
     # send response
     await ctx.respond(file=discord.File(plt_file_path))

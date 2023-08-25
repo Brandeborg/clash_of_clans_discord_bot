@@ -39,10 +39,10 @@ class Troop(Unit):
         return max(i+1 for i, rq_lab_level in enumerate(rq_lab_levels) if rq_lab_level <= th2lab[th_level])
 
     def get_upgrade_time(self, level: int) -> int:
-        return super()._get_upgrade_time(level, prefix="Upgrade")
+        return super().get_upgrade_time(level, prefix="Upgrade")
     
     def get_upgrade_cost(self, level: int) -> int:
-        return super()._get_upgrade_cost(level, prefix="Upgrade")
+        return super().get_upgrade_cost(level, prefix="Upgrade")
     
     def get_upgrade_resource(self):
-        return super()._get_upgrade_resource(prefix="Upgrade")
+        return super().get_upgrade_resource(prefix="Upgrade")

@@ -33,12 +33,12 @@ class Hero(Unit):
         return max(i+1 for i, rq_th_level in enumerate(rq_th_levels) if rq_th_level <= th_level)
     
     def get_upgrade_time(self, level: int) -> int:
-        return super()._get_upgrade_time(level, prefix="Upgrade")
+        return super().get_upgrade_time(level, prefix="Upgrade")
     
     def get_upgrade_cost(self, level: int) -> int:
-        return super()._get_upgrade_cost(level, prefix="Upgrade")
+        return super().get_upgrade_cost(level, prefix="Upgrade")
     
-    def get_upgrade_resource(self):
-        return super()._get_upgrade_resource(prefix="Upgrade")
+    def get_upgrade_resource(self) -> str:
+        return super().get_upgrade_resource(prefix="Upgrade")
 
     

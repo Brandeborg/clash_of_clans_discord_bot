@@ -15,7 +15,7 @@ class Unit(ABC):
     def get_max_level_th(self, th_level: int):
         pass
 
-    def _get_upgrade_time(self, level: int, prefix: str) -> int:
+    def get_upgrade_time(self, level: int, prefix: str) -> int:
         upgrade_time = 0
 
         h_key = prefix + "TimeH"
@@ -29,7 +29,7 @@ class Unit(ABC):
 
         return upgrade_time
 
-    def _get_upgrade_cost(self, level: int, prefix: str) -> int:
+    def get_upgrade_cost(self, level: int, prefix: str) -> int:
         upgrade_cost = 0
 
         cost_key = prefix + "Cost"
@@ -39,10 +39,55 @@ class Unit(ABC):
 
         return upgrade_cost
     
-    def _get_upgrade_resource(self, prefix: str):
+    def get_upgrade_resource(self, prefix: str):
         name_map: dict = bot_util.load_json("../assets/pretty_name_map.json")
 
         resource_key = prefix + "Resource"
 
         return name_map["resource"][self.unit_static[resource_key][0]]
     
+    # static methods
+    @staticmethod
+    def display_units(units: list, unit_order: list, th_level: int) -> list[list]:
+        # create list the length of units, 
+        # so units can be placed directly at indices, in the right order
+        display_lists = [None] * len(units)
+
+        for unit in units:
+            # list to hold unit attributes in a displayable manner
+            # ex: ["name", "current level / max level", ...]
+            display_list = []
+            
+            # name
+            display_list.append(unit.name)
+
+            # level
+            max_level = unit.get_max_level_th(th_level)
+            levels = f"{unit.curr_level} / {max_level}"
+            display_list.append(levels)
+
+            # time
+            curr_time = unit.get_upgrade_time(unit.curr_level)
+            dspl_curr_time = bot_util.display_hours_as_days(curr_time)
+            max_time = unit.get_upgrade_time(max_level)
+            dspl_max_time = bot_util.display_hours_as_days(max_time)
+
+            time = f"{dspl_curr_time}{' / '}{dspl_max_time}"
+            display_list.append(time)
+
+            # cost
+            curr_cost = bot_util.display_large_number(unit.get_upgrade_cost(unit.curr_level))
+            max_cost = bot_util.display_large_number(unit.get_upgrade_cost(max_level))
+
+            cost = f"{curr_cost}{' / '}{max_cost}"
+
+            display_list.append(cost)
+
+            # resource
+            display_list.append(unit.get_upgrade_resource())
+
+            i = unit_order.index(unit.name)
+            display_lists[i] = display_list
+        
+        return display_lists
+
