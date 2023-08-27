@@ -99,7 +99,7 @@ class Unit(ABC):
                             "current_dark_elixir": 0, 
                             "max_dark_elixir": 0,
                             "current_gold": 0,
-                            "max_gold": 100}
+                            "max_gold": 0}
         totals = dict_template
 
         totals["name"] = "Total"

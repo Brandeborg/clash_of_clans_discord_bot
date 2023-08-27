@@ -1,5 +1,6 @@
 import re
 import json
+import matplotlib
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -183,12 +184,18 @@ def plot_table(rows: list, columns: list, file_path: str):
     ax.axis('off')
     ax.axis('tight')
 
-    tab = ax.table(cellText=df.values, colLabels=df.columns, loc='center')
+    table = ax.table(cellText=df.values, colLabels=df.columns, loc='center')
 
-    tab.auto_set_column_width(col=list(range(len(columns))))
-    tab.auto_set_font_size(False)
-    tab.set_fontsize(8)
+    table.auto_set_column_width(col=list(range(len(columns))))
+    table.auto_set_font_size(False)
+    table.set_fontsize(8)
 
-    fig.tight_layout()
+    ## make sure table size fits well into canvas ##
+    # get bounding box of table
+    points = table.get_window_extent().get_points()
+    # add 10 pixel spacing
+    points[0,:] -= 10; points[1,:] += 10
+    # get new bounding box in inches
+    nbbox = matplotlib.transforms.Bbox.from_extents(points/plt.gcf().dpi)
 
-    plt.savefig(file_path, bbox_inches="tight", pad_inches=1)
+    plt.savefig(file_path, bbox_inches=nbbox)
