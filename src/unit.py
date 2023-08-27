@@ -100,7 +100,7 @@ class Unit(ABC):
                             "max_dark_elixir": 0,
                             "current_gold": 0,
                             "max_gold": 0}
-        totals = dict_template
+        totals = dict_template.copy()
 
         totals["name"] = "Total"
         attribute_lists = [totals]

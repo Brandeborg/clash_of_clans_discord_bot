@@ -161,7 +161,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path)
+    # bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path)
 
     ## troops
     troop_order = unit_groups["home_troops"] + ["Total"]
