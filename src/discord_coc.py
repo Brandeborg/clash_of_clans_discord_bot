@@ -173,7 +173,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
     title = f"Troop progress for {player['name']} ({player['tag']})"
-    # bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path, title)
+    bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path, title=title)
 
     ## spells
     spell_order = unit_groups["spells"] + ["Total"]
@@ -184,7 +184,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
     title = f"Spell progress for {player['name']} ({player['tag']})"
-    # bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path, title=title)
+    bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
     await ctx.respond(title, file=discord.File(plt_file_path))
