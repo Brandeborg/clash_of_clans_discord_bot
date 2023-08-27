@@ -55,5 +55,11 @@ weapons.json
 plot dataframe table
 https://stackoverflow.com/questions/32137396/how-do-i-plot-only-a-table-in-matplotlib
 
+adjust table
+https://towardsdatascience.com/simple-little-tables-with-matplotlib-9780ef5d0bc4
+
+adjust plot canvas size to table
+https://stackoverflow.com/questions/42987799/saving-matplotlib-table-creates-a-lot-of-whitespace
+
 # Modules
 if using py-cord, discord.py needs to be uninstalled

@@ -175,14 +175,13 @@ def load_json(filename: str) -> dict:
     with open(filename) as jsonf:
         return json.load(jsonf)
 
-def plot_table(rows: list, columns: list, file_path: str):
+def plot_table(rows: list, columns: list, file_path: str, title: str):
     df = pd.DataFrame(rows, columns=columns)
 
     fig, ax = plt.subplots(dpi=300)
     # hide axes
     fig.patch.set_visible(False)
     ax.axis('off')
-    ax.axis('tight')
 
     table = ax.table(cellText=df.values, colLabels=df.columns, loc='center')
 
@@ -196,6 +195,6 @@ def plot_table(rows: list, columns: list, file_path: str):
     # add 10 pixel spacing
     points[0,:] -= 10; points[1,:] += 10
     # get new bounding box in inches
-    nbbox = matplotlib.transforms.Bbox.from_extents(points/plt.gcf().dpi)
+    nbbox = matplotlib.transforms.Bbox.from_extents(points/fig.dpi)
 
-    plt.savefig(file_path, bbox_inches=nbbox)
+    plt.savefig(file_path, bbox_inches=nbbox,)

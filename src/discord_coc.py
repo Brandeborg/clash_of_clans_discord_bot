@@ -161,7 +161,8 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    # bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path)
+    title = f"Hero progress for {player['name']} ({player['tag']})"
+    bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path, title=title)
 
     ## troops
     troop_order = unit_groups["home_troops"] + ["Total"]
@@ -171,7 +172,8 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path)
+    title = f"Troop progress for {player['name']} ({player['tag']})"
+    # bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path, title)
 
     ## spells
     spell_order = unit_groups["spells"] + ["Total"]
@@ -181,10 +183,11 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    # bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path)
+    title = f"Spell progress for {player['name']} ({player['tag']})"
+    # bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
-    await ctx.respond(file=discord.File(plt_file_path))
+    await ctx.respond(title, file=discord.File(plt_file_path))
     os.remove(plt_file_path)
 
 @bot.slash_command(name="clan_name", description="Returns the player's Clash of Clans clan name", guild_ids=[DISCORD_SERVER_ID])
