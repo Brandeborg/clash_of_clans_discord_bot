@@ -73,14 +73,14 @@ class Unit(ABC):
             display_list.append(time)
 
             # cost
-            curr_cost = bot_util.display_large_number(unit["current_cost"])
-            max_cost = bot_util.display_large_number(unit["max_cost"])
+            ## don't like this. What if change the key names in list_display_attributes? should probably make a key map in this file
+            for current, max in [("current_elixir", "max_elixir"), ("current_dark_elixir", "max_dark_elixir"), ("current_gold", "max_gold")]:
+                curr_cost = bot_util.display_large_number(unit[current])
+                max_cost = bot_util.display_large_number(unit[max])
 
-            cost = f"{curr_cost}{' / '}{max_cost}"
-            display_list.append(cost)
+                cost = f"{curr_cost}{' / '}{max_cost}"
+                display_list.append(cost)
 
-            # resource
-            display_list.append(unit["upgrade_resource"])
 
             i = unit_order.index(unit["name"])
             display_lists[i] = display_list
@@ -94,9 +94,12 @@ class Unit(ABC):
                             "max_level": 0, 
                             "current_time": 0, 
                             "max_time": 0,
-                            "current_cost": 0, 
-                            "max_cost": 0, 
-                            "upgrade_resource": ""}
+                            "current_elixir": 0, 
+                            "max_elixir": 0,
+                            "current_dark_elixir": 0, 
+                            "max_dark_elixir": 0,
+                            "current_gold": 0,
+                            "max_gold": 100}
         totals = dict_template
 
         totals["name"] = "Total"
@@ -104,7 +107,7 @@ class Unit(ABC):
 
         for unit in units:
             # disc to hold unit attributes used in display
-            attribute_list = {}
+            attribute_list = dict_template.copy()
             
             # name
             attribute_list["name"] = unit.name
@@ -128,16 +131,18 @@ class Unit(ABC):
             attribute_lists[0]["max_time"] += attribute_list["max_time"]
 
             # cost
+            resource = unit.get_upgrade_resource()
+            formatted_resource = "_".join(resource.lower().split(" "))
+            current_cost_key = "current_" + formatted_resource
+            current_max_key = "max_" + formatted_resource
+
             curr_cost = unit.get_upgrade_cost(unit.curr_level)
             max_cost = unit.get_upgrade_cost(max_level)
 
-            attribute_list["current_cost"] = curr_cost
-            attribute_lists[0]["current_cost"] += attribute_list["current_cost"]
-            attribute_list["max_cost"] = max_cost
-            attribute_lists[0]["max_cost"] += attribute_list["max_cost"]
-
-            # resource
-            attribute_list["upgrade_resource"] = unit.get_upgrade_resource()
+            attribute_list[current_cost_key] = curr_cost
+            attribute_lists[0][current_cost_key] += attribute_list[current_cost_key]
+            attribute_list[current_max_key] = max_cost
+            attribute_lists[0][current_max_key] += attribute_list[current_max_key]
 
             attribute_lists.append(attribute_list)
         

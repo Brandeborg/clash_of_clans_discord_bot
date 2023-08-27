@@ -1,5 +1,4 @@
 from unit import Unit
-import bot_util
 
 class Hero(Unit):
     def __init__(self, curr_level, name, unit_static: dict) -> None:

@@ -191,4 +191,4 @@ def plot_table(rows: list, columns: list, file_path: str):
 
     fig.tight_layout()
 
-    plt.savefig(file_path)
+    plt.savefig(file_path, bbox_inches="tight", pad_inches=1)

@@ -160,7 +160,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     displayed_heroes = Hero.display_units(hero_attributes, hero_order)
 
     plt_file_path = '../pngs/temp.png'
-    columns = ["Name", "Level", "Time", "Cost", "Resource"]
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
     # bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path)
 
     ## troops
@@ -170,7 +170,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     displayed_troops = Troop.display_units(troop_attributes, troop_order)
 
     plt_file_path = '../pngs/temp.png'
-    columns = ["Name", "Level", "Time", "Cost", "Resource"]
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
     bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path)
 
     ## spells
@@ -180,7 +180,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     displayed_spells = Spell.display_units(spell_attributes, spell_order)
 
     plt_file_path = '../pngs/temp.png'
-    columns = ["Name", "Level", "Time", "Cost", "Resource"]
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
     # bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path)
 
     # send response
