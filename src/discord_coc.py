@@ -154,7 +154,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
 
     # format response
     ## heroes
-    hero_order = unit_groups["home_heroes"]
+    hero_order = unit_groups["home_heroes"] + ["Total"]
 
     hero_attributes = Hero.list_display_attributes(heroes, th_level=player_th_lvl)
     displayed_heroes = Hero.display_units(hero_attributes, hero_order)
@@ -164,24 +164,24 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     # bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path)
 
     ## troops
-    troop_order = unit_groups["home_troops"]
+    troop_order = unit_groups["home_troops"] + ["Total"]
 
     troop_attributes = Troop.list_display_attributes(troops, th_level=player_th_lvl)
     displayed_troops = Troop.display_units(troop_attributes, troop_order)
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]
-    # bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path)
+    bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path)
 
     ## spells
-    spell_order = unit_groups["spells"]
+    spell_order = unit_groups["spells"] + ["Total"]
 
     spell_attributes = Spell.list_display_attributes(spells, th_level=player_th_lvl)
     displayed_spells = Spell.display_units(spell_attributes, spell_order)
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]
-    bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path)
+    # bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path)
 
     # send response
     await ctx.respond(file=discord.File(plt_file_path))

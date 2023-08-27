@@ -51,7 +51,7 @@ class Unit(ABC):
     def display_units(units: list, unit_order: list) -> list[list]:
         # create list the length of units, 
         # so units can be placed directly at indices, in the right order
-        display_lists = [None] * len(units)
+        display_lists = [None] * len(unit_order)
 
         for unit in units:
             # list to hold unit attributes in a displayable manner
@@ -89,7 +89,18 @@ class Unit(ABC):
     
     @staticmethod
     def list_display_attributes(units: list, th_level: int) -> dict:
-        attribute_lists = []
+        dict_template = {"name": "", 
+                            "current_level": 0, 
+                            "max_level": 0, 
+                            "current_time": 0, 
+                            "max_time": 0,
+                            "current_cost": 0, 
+                            "max_cost": 0, 
+                            "upgrade_resource": ""}
+        totals = dict_template
+
+        totals["name"] = "Total"
+        attribute_lists = [totals]
 
         for unit in units:
             # disc to hold unit attributes used in display
@@ -100,22 +111,30 @@ class Unit(ABC):
 
             # level
             attribute_list["current_level"] = unit.curr_level
+            attribute_lists[0]["current_level"] += attribute_list["current_level"]
+
             max_level = unit.get_max_level_th(th_level)
             attribute_list["max_level"] = max_level
+            attribute_lists[0]["max_level"] += attribute_list["max_level"]
 
             # time
             curr_time = unit.get_upgrade_time(unit.curr_level)
             max_time = unit.get_upgrade_time(max_level)
 
             attribute_list["current_time"] = curr_time
+            attribute_lists[0]["current_time"] += attribute_list["current_time"]
+
             attribute_list["max_time"] = max_time
+            attribute_lists[0]["max_time"] += attribute_list["max_time"]
 
             # cost
             curr_cost = unit.get_upgrade_cost(unit.curr_level)
             max_cost = unit.get_upgrade_cost(max_level)
 
             attribute_list["current_cost"] = curr_cost
+            attribute_lists[0]["current_cost"] += attribute_list["current_cost"]
             attribute_list["max_cost"] = max_cost
+            attribute_lists[0]["max_cost"] += attribute_list["max_cost"]
 
             # resource
             attribute_list["upgrade_resource"] = unit.get_upgrade_resource()
