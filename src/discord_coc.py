@@ -9,6 +9,7 @@ import bot_util
 import clash_of_clans
 from hero import Hero
 from troop import Troop
+from spell import Spell
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -127,6 +128,29 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
         troop = Troop(curr_level=troop_active["level"], name=name, unit_static=troop_static)
 
         troops.append(troop)
+    
+    ## spells
+    spells_static = bot_util.load_json("../assets/spells.json")
+
+    spells = []
+    for sc_name, spell_static in spells_static.items():
+        if "TID" not in spell_static: 
+            continue
+
+        if "DisableProduction" in spell_static:
+            continue
+        
+        name = translation[spell_static["TID"][0]][0] 
+        if name not in unit_groups["spells"]:
+            continue
+
+        spell_active = bot_util.search_unit(name, player["spells"])
+
+        if not spell_active:
+            spell_active = {"level": 0}
+        spell = Spell(curr_level=spell_active["level"], name=name, unit_static=spell_static)
+
+        spells.append(spell)
 
     # format response
     ## heroes
@@ -136,7 +160,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]
-    bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path)
+    # bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path)
 
     ## troops
     troop_order = unit_groups["home_troops"]
@@ -146,6 +170,15 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]
     # bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path)
+
+    ## spells
+    spell_order = unit_groups["spells"]
+
+    displayed_spells = Spell.display_units(spells, spell_order, player_th_lvl)
+
+    plt_file_path = '../pngs/temp.png'
+    columns = ["Name", "Level", "Time", "Cost", "Resource"]
+    bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path)
 
     # send response
     await ctx.respond(file=discord.File(plt_file_path))

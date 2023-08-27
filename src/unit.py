@@ -90,4 +90,15 @@ class Unit(ABC):
             display_lists[i] = display_list
         
         return display_lists
+    
+    @staticmethod
+    def unit_is_available_th(production_building: str, th_level: int) -> bool:
+        """Check whether a spell or troop can be available in the Forge / Barracks at th_level
+
+        Returns:
+            bool: A boolean value, true if unit is available at th_level
+        """
+        buildings = bot_util.load_json("../assets/buildings.json")
+        pb_th_levels = buildings[production_building]["TownHallLevel"]
+        return any(th_level >= pb_th_level for pb_th_level in pb_th_levels)
 

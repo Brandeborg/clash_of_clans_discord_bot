@@ -1,7 +1,7 @@
 from unit import Unit
 import bot_util
 
-class Troop(Unit):
+class Spell(Unit):
     def __init__(self, curr_level, name, unit_static: dict) -> None:
         super().__init__(curr_level, name, unit_static)
 
@@ -20,7 +20,7 @@ class Troop(Unit):
         return len(self.unit_static["LaboratoryLevel"])
     
     def get_max_level_th(self, th_level: int):
-        """Deduce the maximum troop level, at current th_level, from a list of "required townhall levels" of the form: 
+        """Deduce the maximum spell level, at current th_level, from a list of "required townhall levels" of the form: 
         [9, 9, 9, 9, 9, 10, 10, 10, ...]. Assumes self.unit_static contains a ProductionBuilding and LaboratoryLevel key.
 
         Args:

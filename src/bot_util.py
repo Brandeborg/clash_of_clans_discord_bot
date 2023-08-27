@@ -131,17 +131,6 @@ def get_th_lab_map() -> dict:
 
     return th_lab_map
 
-def troop_is_available_th(production_building: str, th_level: int) -> bool:
-    """Check whether a troop can be available in the Barracks at th_level
-    TODO: Move this to Troop class
-
-    Returns:
-        dict: 
-    """
-    buildings = load_json("../assets/buildings.json")
-    barrack_th_levels = buildings[production_building]["TownHallLevel"]
-    return th_level in barrack_th_levels
-
 def search_unit(name: str, units: list[dict]) -> dict:
     """Search for a unit in a list of unit dics, where the dict contains a name field
 
