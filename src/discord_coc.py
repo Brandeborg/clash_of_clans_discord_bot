@@ -156,7 +156,8 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     ## heroes
     hero_order = unit_groups["home_heroes"]
 
-    displayed_heroes = Hero.display_units(heroes, hero_order, player_th_lvl)
+    hero_attributes = Hero.list_display_attributes(heroes, th_level=player_th_lvl)
+    displayed_heroes = Hero.display_units(hero_attributes, hero_order)
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]
@@ -165,7 +166,8 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     ## troops
     troop_order = unit_groups["home_troops"]
 
-    displayed_troops = Troop.display_units(troops, troop_order, player_th_lvl)
+    troop_attributes = Troop.list_display_attributes(troops, th_level=player_th_lvl)
+    displayed_troops = Troop.display_units(troop_attributes, troop_order)
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]
@@ -174,7 +176,8 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     ## spells
     spell_order = unit_groups["spells"]
 
-    displayed_spells = Spell.display_units(spells, spell_order, player_th_lvl)
+    spell_attributes = Spell.list_display_attributes(spells, th_level=player_th_lvl)
+    displayed_spells = Spell.display_units(spell_attributes, spell_order)
 
     plt_file_path = '../pngs/temp.png'
     columns = ["Name", "Level", "Time", "Cost", "Resource"]

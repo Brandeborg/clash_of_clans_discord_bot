@@ -48,7 +48,7 @@ class Unit(ABC):
     
     # static methods
     @staticmethod
-    def display_units(units: list, unit_order: list, th_level: int) -> list[list]:
+    def display_units(units: list, unit_order: list) -> list[list]:
         # create list the length of units, 
         # so units can be placed directly at indices, in the right order
         display_lists = [None] * len(units)
@@ -59,37 +59,71 @@ class Unit(ABC):
             display_list = []
             
             # name
-            display_list.append(unit.name)
+            display_list.append(unit["name"])
 
             # level
-            max_level = unit.get_max_level_th(th_level)
-            levels = f"{unit.curr_level} / {max_level}"
+            levels = f"{unit['current_level']} / {unit['max_level']}"
             display_list.append(levels)
 
             # time
-            curr_time = unit.get_upgrade_time(unit.curr_level)
-            dspl_curr_time = bot_util.display_hours_as_days(curr_time)
-            max_time = unit.get_upgrade_time(max_level)
-            dspl_max_time = bot_util.display_hours_as_days(max_time)
+            dspl_curr_time = bot_util.display_hours_as_days(unit["current_time"])
+            dspl_max_time = bot_util.display_hours_as_days(unit["max_time"])
 
             time = f"{dspl_curr_time}{' / '}{dspl_max_time}"
             display_list.append(time)
 
             # cost
-            curr_cost = bot_util.display_large_number(unit.get_upgrade_cost(unit.curr_level))
-            max_cost = bot_util.display_large_number(unit.get_upgrade_cost(max_level))
+            curr_cost = bot_util.display_large_number(unit["current_cost"])
+            max_cost = bot_util.display_large_number(unit["max_cost"])
 
             cost = f"{curr_cost}{' / '}{max_cost}"
-
             display_list.append(cost)
 
             # resource
-            display_list.append(unit.get_upgrade_resource())
+            display_list.append(unit["upgrade_resource"])
 
-            i = unit_order.index(unit.name)
+            i = unit_order.index(unit["name"])
             display_lists[i] = display_list
         
         return display_lists
+    
+    @staticmethod
+    def list_display_attributes(units: list, th_level: int) -> dict:
+        attribute_lists = []
+
+        for unit in units:
+            # disc to hold unit attributes used in display
+            attribute_list = {}
+            
+            # name
+            attribute_list["name"] = unit.name
+
+            # level
+            attribute_list["current_level"] = unit.curr_level
+            max_level = unit.get_max_level_th(th_level)
+            attribute_list["max_level"] = max_level
+
+            # time
+            curr_time = unit.get_upgrade_time(unit.curr_level)
+            max_time = unit.get_upgrade_time(max_level)
+
+            attribute_list["current_time"] = curr_time
+            attribute_list["max_time"] = max_time
+
+            # cost
+            curr_cost = unit.get_upgrade_cost(unit.curr_level)
+            max_cost = unit.get_upgrade_cost(max_level)
+
+            attribute_list["current_cost"] = curr_cost
+            attribute_list["max_cost"] = max_cost
+
+            # resource
+            attribute_list["upgrade_resource"] = unit.get_upgrade_resource()
+
+            attribute_lists.append(attribute_list)
+        
+        return attribute_lists
+
     
     @staticmethod
     def unit_is_available_th(production_building: str, th_level: int) -> bool:
