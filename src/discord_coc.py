@@ -5,6 +5,8 @@ from discord.ext import commands
 import discord
 import os
 
+import numpy as np
+
 import bot_util
 import clash_of_clans
 from hero import Hero
@@ -12,6 +14,8 @@ from troop import Troop
 from spell import Spell
 
 from dotenv import load_dotenv
+
+from unit import Unit
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_BOT_API_TOKEN")
 DISCORD_SERVER_ID = os.getenv("DISCORD_SERVER_ID")
@@ -81,48 +85,43 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     translation = bot_util.load_json("../assets/texts_EN.json")
     unit_groups = bot_util.load_json("../assets/unit_groups.json")
     
-    ## heroes
+    # create unit objects for each unit
     heroes = Hero.create_hero_objects(translation=translation, unit_groups=unit_groups, player=player)
-
-    ## troops
     troops = Troop.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
+    spells = Spell.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
+
+    # extract relevant data for each unit
+    unit_attributes = [("Heroes", Hero.list_display_attributes(heroes, th_level=player_th_lvl)),
+    ("Troops", Troop.list_display_attributes(troops, th_level=player_th_lvl)),
+    ("Spells", Spell.list_display_attributes(spells, th_level=player_th_lvl))]
+
+    ## sum values (this is a bot yucky. Need to rethink the structure of the data at some point)
+    result = []
+    keys = unit_attributes[0][1][0].keys()
+    total = np.zeros(len(unit_attributes[0][1][0])-1, dtype=int)
+    for name, units in unit_attributes:
+        unit_total = np.zeros(len(units[0]) - 1, dtype=int)
+        for unit in units:
+            values = np.array(list(unit.values())[1:])
+            
+            unit_total = np.add(unit_total, values)
+
+        total = np.add(total, unit_total)
+
+        result.append([name] + list(unit_total))
+
+    result.append(["Total"] + list(total))
+
+    ## display result
+    result = [{key: value for key, value in zip(keys, unit)} for unit in result]
     
-    ## spells
-    troops = Spell.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
-
-    # format response
-    ## heroes
-    hero_order = unit_groups["home_heroes"] + ["Total"]
-
-    hero_attributes = Hero.list_display_attributes(heroes, th_level=player_th_lvl)
-    displayed_heroes = Hero.display_units(hero_attributes, hero_order)
+    displayed_units = Unit.display_units(units=result, unit_order=["Heroes", "Troops", "Spells", "Total"])
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
 
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Hero progress for {player['name']} ({player['tag']})"
-    bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path, title=title)
-
-    ## troops
-    troop_order = unit_groups["home_troops"] + ["Total"]
-
-    troop_attributes = Troop.list_display_attributes(troops, th_level=player_th_lvl)
-    displayed_troops = Troop.display_units(troop_attributes, troop_order)
-
-    plt_file_path = 'temp.png'
-    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Troop progress for {player['name']} ({player['tag']})"
-    bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path, title=title)
-
-    ## spells
-    spell_order = unit_groups["spells"] + ["Total"]
-
-    spell_attributes = Spell.list_display_attributes(spells, th_level=player_th_lvl)
-    displayed_spells = Spell.display_units(spell_attributes, spell_order)
-
-    plt_file_path = 'temp.png'
-    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Spell progress for {player['name']} ({player['tag']})"
-    bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path, title=title)
+    title = f"Progress for {player['name']} ({player['tag']}) to max Town Hall level {player_th_lvl}"
+    bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
     await ctx.respond(title, file=discord.File(plt_file_path))

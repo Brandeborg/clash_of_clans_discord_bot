@@ -70,3 +70,5 @@ class Spell(Unit):
             spell = Spell(curr_level=spell_active["level"], name=name, unit_static=spell_static)
 
             spells.append(spell)
+
+        return spells

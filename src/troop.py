@@ -76,3 +76,5 @@ class Troop(Unit):
             troop = Troop(curr_level=troop_active["level"], name=name, unit_static=troop_static)
 
             troops.append(troop)
+        
+        return troops
