@@ -82,75 +82,13 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     unit_groups = bot_util.load_json("../assets/unit_groups.json")
     
     ## heroes
-    heroes_static = bot_util.load_json("../assets/heroes.json")
-
-    heroes = []
-    for sc_name, hero_static in heroes_static.items():
-        if "TID" not in hero_static: 
-            continue
-        
-        name = translation[hero_static["TID"][0]][0] 
-        if name not in unit_groups["home_heroes"]:
-            continue
-
-        hero_active = bot_util.search_unit(name, player["heroes"])
-        if not hero_active:
-            hero_active = {"level": 0}
-        hero = Hero(curr_level=hero_active["level"], name=name, unit_static=hero_static)
-
-        heroes.append(hero)
+    heroes = Hero.create_hero_objects(translation=translation, unit_groups=unit_groups, player=player)
 
     ## troops
-    troops_static = bot_util.load_json("../assets/characters.json")
-
-    troops = []
-    for sc_name, troop_static in troops_static.items():
-        if "TID" not in troop_static: 
-            continue
-
-        if "Tutorial" in sc_name:
-            continue
-
-        if "DisableProduction" in troop_static:
-            continue
-
-        if troop_static["ProductionBuilding"][0] == "Barrack2":
-            continue
-        
-        name = translation[troop_static["TID"][0]][0] 
-        if name not in unit_groups["home_troops"]:
-            continue
-
-        troop_active = bot_util.search_unit(name, player["troops"])
-
-        if not troop_active:
-            troop_active = {"level": 0}
-        troop = Troop(curr_level=troop_active["level"], name=name, unit_static=troop_static)
-
-        troops.append(troop)
+    troops = Troop.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
     
     ## spells
-    spells_static = bot_util.load_json("../assets/spells.json")
-
-    spells = []
-    for sc_name, spell_static in spells_static.items():
-        if "TID" not in spell_static: 
-            continue
-
-        if "DisableProduction" in spell_static:
-            continue
-        
-        name = translation[spell_static["TID"][0]][0] 
-        if name not in unit_groups["spells"]:
-            continue
-
-        spell_active = bot_util.search_unit(name, player["spells"])
-
-        if not spell_active:
-            spell_active = {"level": 0}
-        spell = Spell(curr_level=spell_active["level"], name=name, unit_static=spell_static)
-
-        spells.append(spell)
+    troops = Spell.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
 
     # format response
     ## heroes
@@ -159,7 +97,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     hero_attributes = Hero.list_display_attributes(heroes, th_level=player_th_lvl)
     displayed_heroes = Hero.display_units(hero_attributes, hero_order)
 
-    plt_file_path = '../pngs/temp.png'
+    plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
     title = f"Hero progress for {player['name']} ({player['tag']})"
     bot_util.plot_table(rows=displayed_heroes, columns=columns, file_path=plt_file_path, title=title)
@@ -170,7 +108,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     troop_attributes = Troop.list_display_attributes(troops, th_level=player_th_lvl)
     displayed_troops = Troop.display_units(troop_attributes, troop_order)
 
-    plt_file_path = '../pngs/temp.png'
+    plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
     title = f"Troop progress for {player['name']} ({player['tag']})"
     bot_util.plot_table(rows=displayed_troops, columns=columns, file_path=plt_file_path, title=title)
@@ -181,7 +119,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     spell_attributes = Spell.list_display_attributes(spells, th_level=player_th_lvl)
     displayed_spells = Spell.display_units(spell_attributes, spell_order)
 
-    plt_file_path = '../pngs/temp.png'
+    plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
     title = f"Spell progress for {player['name']} ({player['tag']})"
     bot_util.plot_table(rows=displayed_spells, columns=columns, file_path=plt_file_path, title=title)
@@ -219,7 +157,7 @@ async def coc_clanname(ctx, playertag: Option(str, "Enter your CoC player tag", 
     await ctx.respond(clan["name"])
 
 @bot.slash_command(name="current_war", description="Returns details about a clan's ongoing war", guild_ids=[DISCORD_SERVER_ID])
-async def coc_clanname(ctx, playertag: Option(str, "Enter your CoC player tag", required=False, default=None),
+async def current_war(ctx, playertag: Option(str, "Enter your CoC player tag", required=False, default=None),
                        clantag: Option(str, "Enter your CoC clan tag", required=False, default=None)):
     """Sends a response containing a details about Clash of Clans clan's current war, 
     either by looking up an explicitly passed playertag or clantag or by extracting a playertag from

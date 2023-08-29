@@ -1,4 +1,5 @@
 from unit import Unit
+import bot_util
 
 class Hero(Unit):
     def __init__(self, curr_level, name, unit_static: dict) -> None:
@@ -40,4 +41,24 @@ class Hero(Unit):
     def get_upgrade_resource(self) -> str:
         return super().get_upgrade_resource(prefix="Upgrade")
 
-    
+    @staticmethod
+    def create_hero_objects(translation: dict, unit_groups: dict, player: dict):
+        heroes_static = bot_util.load_json("../assets/heroes.json")
+
+        heroes = []
+        for sc_name, hero_static in heroes_static.items():
+            if "TID" not in hero_static: 
+                continue
+            
+            name = translation[hero_static["TID"][0]][0] 
+            if name not in unit_groups["home_heroes"]:
+                continue
+
+            hero_active = bot_util.search_unit(name, player["heroes"])
+            if not hero_active:
+                hero_active = {"level": 0}
+            hero = Hero(curr_level=hero_active["level"], name=name, unit_static=hero_static)
+
+            heroes.append(hero)
+
+        return heroes

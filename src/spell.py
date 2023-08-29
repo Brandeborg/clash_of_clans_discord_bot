@@ -46,3 +46,27 @@ class Spell(Unit):
     
     def get_upgrade_resource(self):
         return super().get_upgrade_resource(prefix="Upgrade")
+    
+    @staticmethod
+    def create_troop_objects(translation: dict, unit_groups: dict, player: dict):
+        spells_static = bot_util.load_json("../assets/spells.json")
+
+        spells = []
+        for sc_name, spell_static in spells_static.items():
+            if "TID" not in spell_static: 
+                continue
+
+            if "DisableProduction" in spell_static:
+                continue
+            
+            name = translation[spell_static["TID"][0]][0] 
+            if name not in unit_groups["spells"]:
+                continue
+
+            spell_active = bot_util.search_unit(name, player["spells"])
+
+            if not spell_active:
+                spell_active = {"level": 0}
+            spell = Spell(curr_level=spell_active["level"], name=name, unit_static=spell_static)
+
+            spells.append(spell)

@@ -46,3 +46,33 @@ class Troop(Unit):
     
     def get_upgrade_resource(self):
         return super().get_upgrade_resource(prefix="Upgrade")
+    
+    @staticmethod
+    def create_troop_objects(translation: dict, unit_groups: dict, player: dict):
+        troops_static = bot_util.load_json("../assets/characters.json")
+
+        troops = []
+        for sc_name, troop_static in troops_static.items():
+            if "TID" not in troop_static: 
+                continue
+
+            if "Tutorial" in sc_name:
+                continue
+
+            if "DisableProduction" in troop_static:
+                continue
+
+            if troop_static["ProductionBuilding"][0] == "Barrack2":
+                continue
+            
+            name = translation[troop_static["TID"][0]][0] 
+            if name not in unit_groups["home_troops"]:
+                continue
+
+            troop_active = bot_util.search_unit(name, player["troops"])
+
+            if not troop_active:
+                troop_active = {"level": 0}
+            troop = Troop(curr_level=troop_active["level"], name=name, unit_static=troop_static)
+
+            troops.append(troop)
