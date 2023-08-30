@@ -201,6 +201,20 @@ def plot_table(rows: list, columns: list, file_path: str, title: str):
     plt.savefig(file_path, bbox_inches=nbbox,)
 
 def sum_dict_list_columns(dicts: list, ignore_columns: list, ic_values, dtype=int) -> dict:
+    """Given a list of dicts, sums along the columns, unless the column is specified to be ignored using ignore_columns.
+    The columns that are not summed will be replaced with the values in ic_values
+
+    TODO: needs some error handling. len(ignore_colums) == len(ic_values) for instance.
+
+    Args:
+        dicts (list): A list of dicts
+        ignore_columns (list): Columns not to sum
+        ic_values (_type_): ignored_column (ic) values
+        dtype (_type_, optional): The type of number to sum. Defaults to int.
+
+    Returns:
+        dict: A summed dict containing the original keys 
+    """
     if len(dicts) == 0:
         return []
 
