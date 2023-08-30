@@ -1,6 +1,7 @@
 import re
 import json
 import matplotlib
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -198,3 +199,24 @@ def plot_table(rows: list, columns: list, file_path: str, title: str):
     nbbox = matplotlib.transforms.Bbox.from_extents(points/fig.dpi)
 
     plt.savefig(file_path, bbox_inches=nbbox,)
+
+def sum_dict_list_columns(dicts: list, ignore_columns: list, dtype=int) -> dict:
+    if len(dicts) == 0:
+        return []
+
+    column_indices = [i for i in range(len(dicts[0])) if i not in ignore_columns]
+    total = np.zeros(len(dicts[0]) - len(ignore_columns), dtype=dtype)
+
+    for dict in dicts:
+        values = np.array(list(dict.values()))[column_indices]
+        values = values.astype(dtype)
+        
+        total = np.add(total, values)
+
+    keys = [key for i, key in enumerate(dicts[0]) if i not in ignore_columns]
+
+    result = {key: value for key, value in zip(keys, total)}
+
+    return result
+
+    

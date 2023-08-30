@@ -96,6 +96,8 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     ("Spells", Spell.list_display_attributes(spells, th_level=player_th_lvl))]
 
     ## sum values (this is a bot yucky. Need to rethink the structure of the data at some point)
+    print(bot_util.sum_dict_list_columns(unit_attributes[0][1], ignore_columns=[0], dtype=int))
+
     result = []
     keys = unit_attributes[0][1][0].keys()
     total = np.zeros(len(unit_attributes[0][1][0])-1, dtype=int)
