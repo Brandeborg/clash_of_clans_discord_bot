@@ -200,7 +200,7 @@ def plot_table(rows: list, columns: list, file_path: str, title: str):
 
     plt.savefig(file_path, bbox_inches=nbbox,)
 
-def sum_dict_list_columns(dicts: list, ignore_columns: list, dtype=int) -> dict:
+def sum_dict_list_columns(dicts: list, ignore_columns: list, ic_values, dtype=int) -> dict:
     if len(dicts) == 0:
         return []
 
@@ -213,7 +213,10 @@ def sum_dict_list_columns(dicts: list, ignore_columns: list, dtype=int) -> dict:
         
         total = np.add(total, values)
 
-    keys = [key for i, key in enumerate(dicts[0]) if i not in ignore_columns]
+    for i, c in enumerate(ignore_columns):
+        total = total[:c].tolist() + [ic_values[i]] + total[c:].tolist()
+
+    keys = list(dicts[0].keys())
 
     result = {key: value for key, value in zip(keys, total)}
 

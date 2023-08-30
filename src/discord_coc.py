@@ -95,29 +95,17 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     ("Troops", Troop.list_display_attributes(troops, th_level=player_th_lvl)),
     ("Spells", Spell.list_display_attributes(spells, th_level=player_th_lvl))]
 
-    ## sum values (this is a bot yucky. Need to rethink the structure of the data at some point)
-    print(bot_util.sum_dict_list_columns(unit_attributes[0][1], ignore_columns=[0], dtype=int))
-
-    result = []
-    keys = unit_attributes[0][1][0].keys()
-    total = np.zeros(len(unit_attributes[0][1][0])-1, dtype=int)
+    ## sum values
+    unit_totals = []
     for name, units in unit_attributes:
-        unit_total = np.zeros(len(units[0]) - 1, dtype=int)
-        for unit in units:
-            values = np.array(list(unit.values())[1:])
-            
-            unit_total = np.add(unit_total, values)
+        unit_total = bot_util.sum_dict_list_columns(units, ignore_columns=[0], ic_values=[name], dtype=int)
+        unit_totals.append(unit_total)
 
-        total = np.add(total, unit_total)
-
-        result.append([name] + list(unit_total))
-
-    result.append(["Total"] + list(total))
-
-    ## display result
-    result = [{key: value for key, value in zip(keys, unit)} for unit in result]
+    total = bot_util.sum_dict_list_columns(unit_totals, ignore_columns=[0], ic_values=["Total"], dtype=int)
+    unit_totals.append(total)
     
-    displayed_units = Unit.display_units(units=result, unit_order=["Heroes", "Troops", "Spells", "Total"])
+    ## display result
+    displayed_units = Unit.display_units(units=unit_totals, unit_order=["Heroes", "Troops", "Spells", "Total"])
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
 
     plt_file_path = 'temp.png'

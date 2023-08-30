@@ -100,10 +100,8 @@ class Unit(ABC):
                             "max_dark_elixir": 0,
                             "current_gold": 0,
                             "max_gold": 0}
-        totals = dict_template.copy()
 
-        totals["name"] = "Total"
-        attribute_lists = [totals]
+        attribute_lists = []
 
         for unit in units:
             # disc to hold unit attributes used in display
@@ -114,21 +112,17 @@ class Unit(ABC):
 
             # level
             attribute_list["current_level"] = unit.curr_level
-            attribute_lists[0]["current_level"] += attribute_list["current_level"]
 
             max_level = unit.get_max_level_th(th_level)
             attribute_list["max_level"] = max_level
-            attribute_lists[0]["max_level"] += attribute_list["max_level"]
 
             # time
             curr_time = unit.get_upgrade_time(unit.curr_level)
             max_time = unit.get_upgrade_time(max_level)
 
             attribute_list["current_time"] = curr_time
-            attribute_lists[0]["current_time"] += attribute_list["current_time"]
 
             attribute_list["max_time"] = max_time
-            attribute_lists[0]["max_time"] += attribute_list["max_time"]
 
             # cost
             resource = unit.get_upgrade_resource()
@@ -140,9 +134,7 @@ class Unit(ABC):
             max_cost = unit.get_upgrade_cost(max_level)
 
             attribute_list[current_cost_key] = curr_cost
-            attribute_lists[0][current_cost_key] += attribute_list[current_cost_key]
             attribute_list[current_max_key] = max_cost
-            attribute_lists[0][current_max_key] += attribute_list[current_max_key]
 
             attribute_lists.append(attribute_list)
         
