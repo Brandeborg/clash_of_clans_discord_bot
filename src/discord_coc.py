@@ -170,6 +170,12 @@ async def current_war(ctx, playertag: Option(str, "Enter your CoC player tag", r
 
     # format response
     cw = current_war
+    
+    if cw["state"] == "notInWar":
+        repsonse = f'{clantag} is not currently in a regular war'
+        await ctx.respond(repsonse)
+        return
+    
     us = cw["clan"]
     op = cw["opponent"]
     apm = cw["attacksPerMember"]
