@@ -25,7 +25,9 @@ coc = clash_of_clans.CoCAPI()
 
 # commands
 @bot.slash_command(name="player_progress", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
-async def coc_player_progress(ctx, playertag: Option(str, "Enter a CoC player tag", required=False, default=None)):
+async def coc_player_progress(ctx, 
+                              playertag: Option(str, "Enter a CoC player tag", required=False, default=None), 
+                              th_level: Option(str, "Enter a Town Hall level", required=False, default=None)):
     """Sends a response containing a Clash of Clans player's progress of upgrading:
     - heroes
     - troops ("characters")
@@ -54,7 +56,11 @@ async def coc_player_progress(ctx, playertag: Option(str, "Enter a CoC player ta
     except Exception as e:
         return await ctx.respond(e)
     
-    player_th_lvl = player["townHallLevel"]
+    try:
+        th_lvl = player["townHallLevel"] if not th_level else int(th_level)
+    except:
+        await ctx.respond("The passed th_level is probably not a number")
+        return
     translation = bot_util.load_json("../assets/texts_EN.json")
     unit_groups = bot_util.load_json("../assets/unit_groups.json")
     
@@ -64,9 +70,9 @@ async def coc_player_progress(ctx, playertag: Option(str, "Enter a CoC player ta
     spells = Spell.create_spell_objects(translation=translation, unit_groups=unit_groups, player=player)
 
     # extract relevant data for each unit
-    unit_attributes = [("Heroes", Hero.list_display_attributes(heroes, th_level=player_th_lvl)),
-    ("Troops", Troop.list_display_attributes(troops, th_level=player_th_lvl)),
-    ("Spells", Spell.list_display_attributes(spells, th_level=player_th_lvl))]
+    unit_attributes = [("Heroes", Hero.list_display_attributes(heroes, th_level=th_lvl)),
+    ("Troops", Troop.list_display_attributes(troops, th_level=th_lvl)),
+    ("Spells", Spell.list_display_attributes(spells, th_level=th_lvl))]
 
     ## sum values
     unit_totals = []
@@ -83,7 +89,7 @@ async def coc_player_progress(ctx, playertag: Option(str, "Enter a CoC player ta
 
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Progress for {player['name']} ({player['tag']}) to max Town Hall level {player_th_lvl}"
+    title = f"Progress for {player['name']} ({player['tag']}) to max Town Hall level {th_lvl}"
     bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
@@ -91,7 +97,9 @@ async def coc_player_progress(ctx, playertag: Option(str, "Enter a CoC player ta
     os.remove(plt_file_path)
 
 @bot.slash_command(name="player_progress_heroes", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
-async def coc_player_progress_heroes(ctx, playertag: Option(str, "Enter a CoC player tag", required=False, default=None)):
+async def coc_player_progress_heroes(ctx, 
+                                     playertag: Option(str, "Enter a CoC player tag", required=False, default=None),
+                                     th_level: Option(str, "Enter a Town Hall level", required=False, default=None)):
     """Sends a response containing a Clash of Clans player's progress of upgrading individual heroes
 
     either by looking up an explicitly passed player tag or by extracting a player tag from
@@ -117,7 +125,13 @@ async def coc_player_progress_heroes(ctx, playertag: Option(str, "Enter a CoC pl
     except Exception as e:
         return await ctx.respond(e)
     
-    player_th_lvl = player["townHallLevel"]
+    #TODO: Some code repetition has snuck in again, rethink structure of individual unit commands (spells, heroes, etc.)
+    # and try to reuse some stuff, like the snippet below
+    try:
+        th_lvl = player["townHallLevel"] if not th_level else int(th_level)
+    except:
+        await ctx.respond("The passed th_level is probably not a number")
+        return
     translation = bot_util.load_json("../assets/texts_EN.json")
     unit_groups = bot_util.load_json("../assets/unit_groups.json")
     
@@ -125,7 +139,7 @@ async def coc_player_progress_heroes(ctx, playertag: Option(str, "Enter a CoC pl
     heroes = Hero.create_hero_objects(translation=translation, unit_groups=unit_groups, player=player)
 
     # extract relevant data for each unit
-    hero_attributes = Hero.list_display_attributes(heroes, th_level=player_th_lvl)
+    hero_attributes = Hero.list_display_attributes(heroes, th_level=th_lvl)
 
     hero_attributes.append(bot_util.sum_dict_list_columns(hero_attributes, [0], ["Total"], int))
     
@@ -135,7 +149,7 @@ async def coc_player_progress_heroes(ctx, playertag: Option(str, "Enter a CoC pl
 
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Hero progress for {player['name']} ({player['tag']}) to max Town Hall level {player_th_lvl}"
+    title = f"Hero progress for {player['name']} ({player['tag']}) to max Town Hall level {th_lvl}"
     bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
@@ -143,7 +157,9 @@ async def coc_player_progress_heroes(ctx, playertag: Option(str, "Enter a CoC pl
     os.remove(plt_file_path)
 
 @bot.slash_command(name="player_progress_troops", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
-async def coc_player_progress_troops(ctx, playertag: Option(str, "Enter a CoC player tag", required=False, default=None)):
+async def coc_player_progress_troops(ctx, 
+                                     playertag: Option(str, "Enter a CoC player tag", required=False, default=None),
+                                     th_level: Option(str, "Enter a Town Hall level", required=False, default=None)):
     """Sends a response containing a Clash of Clans player's progress of upgrading individual troops
 
     either by looking up an explicitly passed player tag or by extracting a player tag from
@@ -169,7 +185,11 @@ async def coc_player_progress_troops(ctx, playertag: Option(str, "Enter a CoC pl
     except Exception as e:
         return await ctx.respond(e)
     
-    player_th_lvl = player["townHallLevel"]
+    try:
+        th_lvl = player["townHallLevel"] if not th_level else int(th_level)
+    except:
+        await ctx.respond("The passed th_level is probably not a number")
+        return
     translation = bot_util.load_json("../assets/texts_EN.json")
     unit_groups = bot_util.load_json("../assets/unit_groups.json")
     
@@ -177,7 +197,7 @@ async def coc_player_progress_troops(ctx, playertag: Option(str, "Enter a CoC pl
     troops = Troop.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
 
     # extract relevant data for each unit
-    troop_attributes = Troop.list_display_attributes(troops, th_level=player_th_lvl)
+    troop_attributes = Troop.list_display_attributes(troops, th_level=th_lvl)
 
     troop_attributes.append(bot_util.sum_dict_list_columns(troop_attributes, [0], ["Total"], int))
     
@@ -187,7 +207,7 @@ async def coc_player_progress_troops(ctx, playertag: Option(str, "Enter a CoC pl
 
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Troop progress for {player['name']} ({player['tag']}) to max Town Hall level {player_th_lvl}"
+    title = f"Troop progress for {player['name']} ({player['tag']}) to max Town Hall level {th_lvl}"
     bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
@@ -195,7 +215,9 @@ async def coc_player_progress_troops(ctx, playertag: Option(str, "Enter a CoC pl
     os.remove(plt_file_path)
 
 @bot.slash_command(name="player_progress_spells", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
-async def coc_player_progress_spells(ctx, playertag: Option(str, "Enter a CoC player tag", required=False, default=None)):
+async def coc_player_progress_spells(ctx, 
+                                     playertag: Option(str, "Enter a CoC player tag", required=False, default=None),
+                                     th_level: Option(str, "Enter a Town Hall level", required=False, default=None)):
     """Sends a response containing a Clash of Clans player's progress of upgrading individual spells
 
     either by looking up an explicitly passed player tag or by extracting a player tag from
@@ -221,7 +243,11 @@ async def coc_player_progress_spells(ctx, playertag: Option(str, "Enter a CoC pl
     except Exception as e:
         return await ctx.respond(e)
     
-    player_th_lvl = player["townHallLevel"]
+    try:
+        th_lvl = player["townHallLevel"] if not th_level else int(th_level)
+    except:
+        await ctx.respond("The passed th_level is probably not a number")
+        return
     translation = bot_util.load_json("../assets/texts_EN.json")
     unit_groups = bot_util.load_json("../assets/unit_groups.json")
     
@@ -229,7 +255,7 @@ async def coc_player_progress_spells(ctx, playertag: Option(str, "Enter a CoC pl
     spells = Spell.create_spell_objects(translation=translation, unit_groups=unit_groups, player=player)
 
     # extract relevant data for each unit
-    spell_attributes = Hero.list_display_attributes(spells, th_level=player_th_lvl)
+    spell_attributes = Hero.list_display_attributes(spells, th_level=th_lvl)
 
     spell_attributes.append(bot_util.sum_dict_list_columns(spell_attributes, [0], ["Total"], int))
     
@@ -239,7 +265,7 @@ async def coc_player_progress_spells(ctx, playertag: Option(str, "Enter a CoC pl
 
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Spell progress for {player['name']} ({player['tag']}) to max Town Hall level {player_th_lvl}"
+    title = f"Spell progress for {player['name']} ({player['tag']}) to max Town Hall level {th_lvl}"
     bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response

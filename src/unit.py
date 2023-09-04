@@ -89,6 +89,16 @@ class Unit(ABC):
     
     @staticmethod
     def list_display_attributes(units: list, th_level: int) -> dict:
+        """Extracts from units all the attributes needed to display, such as current level and max level.
+        TODO: Current level should be capped at max level for th_level
+
+        Args:
+            units (list): List of Unit subtypes
+            th_level (int): The level of the townhall used to determine max level of unit
+
+        Returns:
+            dict: _description_
+        """
         dict_template = {"name": "", 
                             "current_level": 0, 
                             "max_level": 0, 
