@@ -48,7 +48,7 @@ class Spell(Unit):
         return super().get_upgrade_resource(prefix="Upgrade")
     
     @staticmethod
-    def create_troop_objects(translation: dict, unit_groups: dict, player: dict):
+    def create_spell_objects(translation: dict, unit_groups: dict, player: dict):
         spells_static = bot_util.load_json("../assets/spells.json")
 
         spells = []

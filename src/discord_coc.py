@@ -51,12 +51,12 @@ async def coc_playername(ctx, playertag: Option(str, "Enter your CoC player tag"
     # send response
     await ctx.respond(player["name"])
 
-@bot.slash_command(name="player_progress_th", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
-async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC player tag", required=False, default=None)):
+@bot.slash_command(name="player_progress", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
+async def coc_player_progress(ctx, playertag: Option(str, "Enter a CoC player tag", required=False, default=None)):
     """Sends a response containing a Clash of Clans player's progress of upgrading:
     - heroes
     - troops ("characters")
-    - pets
+    - spells
 
     either by looking up an explicitly passed player tag or by extracting a player tag from
     the discord user's display name.
@@ -88,7 +88,7 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     # create unit objects for each unit
     heroes = Hero.create_hero_objects(translation=translation, unit_groups=unit_groups, player=player)
     troops = Troop.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
-    spells = Spell.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
+    spells = Spell.create_spell_objects(translation=translation, unit_groups=unit_groups, player=player)
 
     # extract relevant data for each unit
     unit_attributes = [("Heroes", Hero.list_display_attributes(heroes, th_level=player_th_lvl)),
@@ -111,6 +111,162 @@ async def coc_player_progress_th(ctx, playertag: Option(str, "Enter your CoC pla
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
     title = f"Progress for {player['name']} ({player['tag']}) to max Town Hall level {player_th_lvl}"
+    bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
+
+    # send response
+    await ctx.respond(title, file=discord.File(plt_file_path))
+    os.remove(plt_file_path)
+
+@bot.slash_command(name="player_progress_heroes", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
+async def coc_player_progress_heroes(ctx, playertag: Option(str, "Enter a CoC player tag", required=False, default=None)):
+    """Sends a response containing a Clash of Clans player's progress of upgrading individual heroes
+
+    either by looking up an explicitly passed player tag or by extracting a player tag from
+    the discord user's display name.
+
+    Args:
+        ctx (_type_): Discord context, containing attributes such as displayname and functions
+        playertag (Option, optional): A CoC player tag. Defaults to False, default=None).
+
+    Returns:
+        None: Returns nothing
+    """
+    # it can happen, that the command cannot respond with image within 3 seconds,
+    # so we need to send an inital response, after which there are 15 minutes to respond
+    await ctx.defer()
+
+    # fetch data from CoC API
+    try:
+        playertag = await bot_util.get_playertag(ctx.author.display_name) if not playertag else playertag
+        playertag = bot_util.add_octothorpe(playertag)
+        bot_util.validate_tag(playertag)
+        player = coc.player(playertag)
+    except Exception as e:
+        return await ctx.respond(e)
+    
+    player_th_lvl = player["townHallLevel"]
+    translation = bot_util.load_json("../assets/texts_EN.json")
+    unit_groups = bot_util.load_json("../assets/unit_groups.json")
+    
+    # create unit objects for each unit
+    heroes = Hero.create_hero_objects(translation=translation, unit_groups=unit_groups, player=player)
+
+    # extract relevant data for each unit
+    hero_attributes = Hero.list_display_attributes(heroes, th_level=player_th_lvl)
+
+    hero_attributes.append(bot_util.sum_dict_list_columns(hero_attributes, [0], ["Total"], int))
+    
+    ## display result
+    displayed_units = Unit.display_units(units=hero_attributes, unit_order=unit_groups["home_heroes"] + ["Total"])
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
+
+    plt_file_path = 'temp.png'
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
+    title = f"Hero progress for {player['name']} ({player['tag']}) to max Town Hall level {player_th_lvl}"
+    bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
+
+    # send response
+    await ctx.respond(title, file=discord.File(plt_file_path))
+    os.remove(plt_file_path)
+
+@bot.slash_command(name="player_progress_troops", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
+async def coc_player_progress_troops(ctx, playertag: Option(str, "Enter a CoC player tag", required=False, default=None)):
+    """Sends a response containing a Clash of Clans player's progress of upgrading individual troops
+
+    either by looking up an explicitly passed player tag or by extracting a player tag from
+    the discord user's display name.
+
+    Args:
+        ctx (_type_): Discord context, containing attributes such as displayname and functions
+        playertag (Option, optional): A CoC player tag. Defaults to False, default=None).
+
+    Returns:
+        None: Returns nothing
+    """
+    # it can happen, that the command cannot respond with image within 3 seconds,
+    # so we need to send an inital response, after which there are 15 minutes to respond
+    await ctx.defer()
+
+    # fetch data from CoC API
+    try:
+        playertag = await bot_util.get_playertag(ctx.author.display_name) if not playertag else playertag
+        playertag = bot_util.add_octothorpe(playertag)
+        bot_util.validate_tag(playertag)
+        player = coc.player(playertag)
+    except Exception as e:
+        return await ctx.respond(e)
+    
+    player_th_lvl = player["townHallLevel"]
+    translation = bot_util.load_json("../assets/texts_EN.json")
+    unit_groups = bot_util.load_json("../assets/unit_groups.json")
+    
+    # create unit objects for each unit
+    troops = Troop.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
+
+    # extract relevant data for each unit
+    troop_attributes = Troop.list_display_attributes(troops, th_level=player_th_lvl)
+
+    troop_attributes.append(bot_util.sum_dict_list_columns(troop_attributes, [0], ["Total"], int))
+    
+    ## display result
+    displayed_units = Unit.display_units(units=troop_attributes, unit_order=unit_groups["home_troops"] + ["Total"])
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
+
+    plt_file_path = 'temp.png'
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
+    title = f"Troop progress for {player['name']} ({player['tag']}) to max Town Hall level {player_th_lvl}"
+    bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
+
+    # send response
+    await ctx.respond(title, file=discord.File(plt_file_path))
+    os.remove(plt_file_path)
+
+@bot.slash_command(name="player_progress_spells", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
+async def coc_player_progress_spells(ctx, playertag: Option(str, "Enter a CoC player tag", required=False, default=None)):
+    """Sends a response containing a Clash of Clans player's progress of upgrading individual spells
+
+    either by looking up an explicitly passed player tag or by extracting a player tag from
+    the discord user's display name.
+
+    Args:
+        ctx (_type_): Discord context, containing attributes such as displayname and functions
+        playertag (Option, optional): A CoC player tag. Defaults to False, default=None).
+
+    Returns:
+        None: Returns nothing
+    """
+    # it can happen, that the command cannot respond with image within 3 seconds,
+    # so we need to send an inital response, after which there are 15 minutes to respond
+    await ctx.defer()
+
+    # fetch data from CoC API
+    try:
+        playertag = await bot_util.get_playertag(ctx.author.display_name) if not playertag else playertag
+        playertag = bot_util.add_octothorpe(playertag)
+        bot_util.validate_tag(playertag)
+        player = coc.player(playertag)
+    except Exception as e:
+        return await ctx.respond(e)
+    
+    player_th_lvl = player["townHallLevel"]
+    translation = bot_util.load_json("../assets/texts_EN.json")
+    unit_groups = bot_util.load_json("../assets/unit_groups.json")
+    
+    # create unit objects for each unit
+    spells = Spell.create_spell_objects(translation=translation, unit_groups=unit_groups, player=player)
+
+    # extract relevant data for each unit
+    spell_attributes = Hero.list_display_attributes(spells, th_level=player_th_lvl)
+
+    spell_attributes.append(bot_util.sum_dict_list_columns(spell_attributes, [0], ["Total"], int))
+    
+    ## display result
+    displayed_units = Unit.display_units(units=spell_attributes, unit_order=unit_groups["spells"] + ["Total"])
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
+
+    plt_file_path = 'temp.png'
+    columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
+    title = f"Spell progress for {player['name']} ({player['tag']}) to max Town Hall level {player_th_lvl}"
     bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
@@ -170,7 +326,7 @@ async def current_war(ctx, playertag: Option(str, "Enter your CoC player tag", r
 
     # format response
     cw = current_war
-    
+
     if cw["state"] == "notInWar":
         repsonse = f'{clantag} is not currently in a regular war'
         await ctx.respond(repsonse)
