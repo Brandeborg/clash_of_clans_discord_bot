@@ -20,8 +20,13 @@ load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_BOT_API_TOKEN")
 DISCORD_SERVER_ID = os.getenv("DISCORD_SERVER_ID")
 
+print(DISCORD_SERVER_ID)
+
+print("1")
 bot = commands.Bot()
+print("2")
 coc = clash_of_clans.CoCAPI()
+print("3")
 
 # commands
 @bot.slash_command(name="player_progress", description="Returns the players progress towards maxing current TH", guild_ids=[DISCORD_SERVER_ID])
