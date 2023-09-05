@@ -16,6 +16,7 @@ from spell import Spell
 from dotenv import load_dotenv
 
 from unit import Unit
+print("0")
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_BOT_API_TOKEN")
 DISCORD_SERVER_ID = os.getenv("DISCORD_SERVER_ID")
