@@ -49,7 +49,7 @@ class Troop(Unit):
     
     @staticmethod
     def create_troop_objects(translation: dict, unit_groups: dict, player: dict):
-        troops_static = bot_util.load_json("../assets/characters.json")
+        troops_static = bot_util.load_json("assets/characters.json")
 
         troops = []
         for sc_name, troop_static in troops_static.items():

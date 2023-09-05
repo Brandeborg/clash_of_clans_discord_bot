@@ -62,8 +62,8 @@ async def coc_player_progress(ctx,
     except:
         await ctx.respond("The passed th_level is probably not a number")
         return
-    translation = bot_util.load_json("../assets/texts_EN.json")
-    unit_groups = bot_util.load_json("../assets/unit_groups.json")
+    translation = bot_util.load_json("assets/texts_EN.json")
+    unit_groups = bot_util.load_json("assets/unit_groups.json")
     
     # create unit objects for each unit
     heroes = Hero.create_hero_objects(translation=translation, unit_groups=unit_groups, player=player)
@@ -133,8 +133,8 @@ async def coc_player_progress_heroes(ctx,
     except:
         await ctx.respond("The passed th_level is probably not a number")
         return
-    translation = bot_util.load_json("../assets/texts_EN.json")
-    unit_groups = bot_util.load_json("../assets/unit_groups.json")
+    translation = bot_util.load_json("assets/texts_EN.json")
+    unit_groups = bot_util.load_json("assets/unit_groups.json")
     
     # create unit objects for each unit
     heroes = Hero.create_hero_objects(translation=translation, unit_groups=unit_groups, player=player)
@@ -191,8 +191,8 @@ async def coc_player_progress_troops(ctx,
     except:
         await ctx.respond("The passed th_level is probably not a number")
         return
-    translation = bot_util.load_json("../assets/texts_EN.json")
-    unit_groups = bot_util.load_json("../assets/unit_groups.json")
+    translation = bot_util.load_json("assets/texts_EN.json")
+    unit_groups = bot_util.load_json("assets/unit_groups.json")
     
     # create unit objects for each unit
     troops = Troop.create_troop_objects(translation=translation, unit_groups=unit_groups, player=player)
@@ -249,8 +249,8 @@ async def coc_player_progress_spells(ctx,
     except:
         await ctx.respond("The passed th_level is probably not a number")
         return
-    translation = bot_util.load_json("../assets/texts_EN.json")
-    unit_groups = bot_util.load_json("../assets/unit_groups.json")
+    translation = bot_util.load_json("assets/texts_EN.json")
+    unit_groups = bot_util.load_json("assets/unit_groups.json")
     
     # create unit objects for each unit
     spells = Spell.create_spell_objects(translation=translation, unit_groups=unit_groups, player=player)

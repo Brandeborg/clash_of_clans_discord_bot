@@ -127,7 +127,7 @@ def get_th_lab_map() -> dict:
     Returns:
         dict: {th_level: lab_level, ...}
     """
-    buildings = load_json("../assets/buildings.json")
+    buildings = load_json("assets/buildings.json")
     lab_th_levels = buildings["Laboratory"]["TownHallLevel"]
     th_lab_map = {th_lvl: i+1 for i, th_lvl in enumerate(lab_th_levels)}
 

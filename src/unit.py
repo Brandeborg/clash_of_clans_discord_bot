@@ -40,7 +40,7 @@ class Unit(ABC):
         return upgrade_cost
     
     def get_upgrade_resource(self, prefix: str):
-        name_map: dict = bot_util.load_json("../assets/pretty_name_map.json")
+        name_map: dict = bot_util.load_json("assets/pretty_name_map.json")
 
         resource_key = prefix + "Resource"
 
@@ -158,7 +158,7 @@ class Unit(ABC):
         Returns:
             bool: A boolean value, true if unit is available at th_level
         """
-        buildings = bot_util.load_json("../assets/buildings.json")
+        buildings = bot_util.load_json("assets/buildings.json")
         pb_th_levels = buildings[production_building]["TownHallLevel"]
         return any(th_level >= pb_th_level for pb_th_level in pb_th_levels)
 

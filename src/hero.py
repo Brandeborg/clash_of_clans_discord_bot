@@ -43,7 +43,7 @@ class Hero(Unit):
 
     @staticmethod
     def create_hero_objects(translation: dict, unit_groups: dict, player: dict):
-        heroes_static = bot_util.load_json("../assets/heroes.json")
+        heroes_static = bot_util.load_json("assets/heroes.json")
 
         heroes = []
         for sc_name, hero_static in heroes_static.items():

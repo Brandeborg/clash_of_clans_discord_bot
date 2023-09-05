@@ -49,7 +49,7 @@ class Spell(Unit):
     
     @staticmethod
     def create_spell_objects(translation: dict, unit_groups: dict, player: dict):
-        spells_static = bot_util.load_json("../assets/spells.json")
+        spells_static = bot_util.load_json("assets/spells.json")
 
         spells = []
         for sc_name, spell_static in spells_static.items():
