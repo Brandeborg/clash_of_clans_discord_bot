@@ -61,5 +61,8 @@ https://towardsdatascience.com/simple-little-tables-with-matplotlib-9780ef5d0bc4
 adjust plot canvas size to table
 https://stackoverflow.com/questions/42987799/saving-matplotlib-table-creates-a-lot-of-whitespace
 
+api proxy to get around whitelisting dynamic ip adresses
+https://docs.royaleapi.com/proxy.html
+
 # Modules
 if using py-cord, discord.py needs to be uninstalled
