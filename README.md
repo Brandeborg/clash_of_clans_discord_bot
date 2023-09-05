@@ -14,6 +14,9 @@ https://stackoverflow.com/questions/71165431/how-do-i-make-a-working-slash-comma
 Context (ctx) attributes 
 https://discordpy.readthedocs.io/en/latest/ext/commands/api.html#discord.ext.commands.Context
 
+bot invite link
+https://discord.com/api/oauth2/authorize?client_id=1142437189523869727&permissions=2048&scope=bot%20applications.commands
+
 httpx docs
 https://www.python-httpx.org/advanced/
 

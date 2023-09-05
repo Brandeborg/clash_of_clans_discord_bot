@@ -62,6 +62,7 @@ async def coc_player_progress(ctx,
     except:
         await ctx.respond("The passed th_level is probably not a number")
         return
+    # TODO: change all paths to be absolute rather than relative
     translation = bot_util.load_json("assets/texts_EN.json")
     unit_groups = bot_util.load_json("assets/unit_groups.json")
     

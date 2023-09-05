@@ -28,17 +28,19 @@ def extract_playertag(displayname: str):
 
 
 def validate_tag(tag: str):
-    """Make sure a tag is of the right format (10 digits)
+    """Make sure a tag is of the right format (9-10 digits)
 
     Args:
         tag (str): CoC player or clan tag
     """
-    if len(tag) != 10:
+    if len(tag) not in [9,10]:
         raise Exception(
             """
             Invalid tag, should follow one of these formats:
             \"1BCDEFGH9\"
             \"#1BCDEFGH9\"
+            \"1BCDEFG8\"
+            \"#1BCDEFG8\"
             """)
 
 
