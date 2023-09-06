@@ -91,7 +91,7 @@ async def coc_player_progress(ctx,
 
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Progress for {player['name']} ({player['tag']}) to max Town Hall level {th_lvl}"
+    title = f"Resources remaining until {player['name']} ({player['tag']}) has maxed Town Hall level {th_lvl}"
     bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
@@ -151,7 +151,7 @@ async def coc_player_progress_heroes(ctx,
 
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Hero progress for {player['name']} ({player['tag']}) to max Town Hall level {th_lvl}"
+    title = f"Resources remaining until {player['name']} ({player['tag']}) has maxed heroes at Town Hall level {th_lvl}"
     bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
@@ -209,7 +209,7 @@ async def coc_player_progress_troops(ctx,
 
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Troop progress for {player['name']} ({player['tag']}) to max Town Hall level {th_lvl}"
+    title = f"Resources remaining until {player['name']} ({player['tag']}) has maxed troops at Town Hall level {th_lvl}"
     bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response
@@ -267,7 +267,7 @@ async def coc_player_progress_spells(ctx,
 
     plt_file_path = 'temp.png'
     columns = ["Name", "Level", "Time", "Elixir", "Dark Elixir", "Gold"]
-    title = f"Spell progress for {player['name']} ({player['tag']}) to max Town Hall level {th_lvl}"
+    title = f"Resources remaining until {player['name']} ({player['tag']}) has maxed spells at Town Hall level {th_lvl}"
     bot_util.plot_table(rows=displayed_units, columns=columns, file_path=plt_file_path, title=title)
 
     # send response

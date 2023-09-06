@@ -55,18 +55,18 @@ class Unit(ABC):
 
         for unit in units:
             # list to hold unit attributes in a displayable manner
-            # ex: ["name", "current level / max level", ...]
+            # ex: ["name", "remaining level / max level", ...]
             display_list = []
             
             # name
             display_list.append(unit["name"])
 
             # level
-            levels = f"{unit['current_level']} / {unit['max_level']}"
+            levels = f"{unit['remaining_level']} / {unit['max_level']}"
             display_list.append(levels)
 
             # time
-            dspl_curr_time = bot_util.display_hours_as_days(unit["current_time"])
+            dspl_curr_time = bot_util.display_hours_as_days(unit["remaining_time"])
             dspl_max_time = bot_util.display_hours_as_days(unit["max_time"])
 
             time = f"{dspl_curr_time}{' / '}{dspl_max_time}"
@@ -74,8 +74,8 @@ class Unit(ABC):
 
             # cost
             ## don't like this. What if change the key names in list_display_attributes? should probably make a key map in this file
-            for current, max in [("current_elixir", "max_elixir"), ("current_dark_elixir", "max_dark_elixir"), ("current_gold", "max_gold")]:
-                curr_cost = bot_util.display_large_number(unit[current])
+            for remaining, max in [("remaining_elixir", "max_elixir"), ("remaining_dark_elixir", "max_dark_elixir"), ("remaining_gold", "max_gold")]:
+                curr_cost = bot_util.display_large_number(unit[remaining])
                 max_cost = bot_util.display_large_number(unit[max])
 
                 cost = f"{curr_cost}{' / '}{max_cost}"
@@ -89,8 +89,7 @@ class Unit(ABC):
     
     @staticmethod
     def list_display_attributes(units: list, th_level: int) -> dict:
-        """Extracts from units all the attributes needed to display, such as current level and max level.
-        TODO: Current level should be capped at max level for th_level
+        """Extracts from units all the attributes needed to display, such as remaining level and max level.
 
         Args:
             units (list): List of Unit subtypes
@@ -100,15 +99,15 @@ class Unit(ABC):
             dict: _description_
         """
         dict_template = {"name": "", 
-                            "current_level": 0, 
+                            "remaining_level": 0, 
                             "max_level": 0, 
-                            "current_time": 0, 
+                            "remaining_time": 0, 
                             "max_time": 0,
-                            "current_elixir": 0, 
+                            "remaining_elixir": 0, 
                             "max_elixir": 0,
-                            "current_dark_elixir": 0, 
+                            "remaining_dark_elixir": 0, 
                             "max_dark_elixir": 0,
-                            "current_gold": 0,
+                            "remaining_gold": 0,
                             "max_gold": 0}
 
         attribute_lists = []
@@ -121,30 +120,30 @@ class Unit(ABC):
             attribute_list["name"] = unit.name
 
             # level
-            attribute_list["current_level"] = unit.curr_level
-
             max_level = unit.get_max_level_th(th_level)
+            rem_level = max(max_level - unit.curr_level, 0)
+
+            attribute_list["remaining_level"] = rem_level
             attribute_list["max_level"] = max_level
 
             # time
-            curr_time = unit.get_upgrade_time(unit.curr_level)
             max_time = unit.get_upgrade_time(max_level)
+            rem_time = max(max_time - unit.get_upgrade_time(unit.curr_level), 0)
 
-            attribute_list["current_time"] = curr_time
-
+            attribute_list["remaining_time"] = rem_time
             attribute_list["max_time"] = max_time
 
             # cost
             resource = unit.get_upgrade_resource()
             formatted_resource = "_".join(resource.lower().split(" "))
-            current_cost_key = "current_" + formatted_resource
-            current_max_key = "max_" + formatted_resource
+            remaining_cost_key = "remaining_" + formatted_resource
+            remaining_max_key = "max_" + formatted_resource
 
-            curr_cost = unit.get_upgrade_cost(unit.curr_level)
             max_cost = unit.get_upgrade_cost(max_level)
+            rem_cost = max(max_cost - unit.get_upgrade_cost(unit.curr_level), 0)
 
-            attribute_list[current_cost_key] = curr_cost
-            attribute_list[current_max_key] = max_cost
+            attribute_list[remaining_cost_key] = rem_cost
+            attribute_list[remaining_max_key] = max_cost
 
             attribute_lists.append(attribute_list)
         
