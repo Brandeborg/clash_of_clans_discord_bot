@@ -1,0 +1,1225 @@
+{
+    "state": "inWar",
+    "season": "2023-09",
+    "clans": [
+      {
+        "tag": "#2G2GRVR09",
+        "name": "CLASSICO",
+        "clanLevel": 2,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/badges/70/0AAQlxMgMgzde0YBumrWPHpcYWq3cgF8prilPFTAWeE.png",
+          "large": "https://api-assets.clashofclans.com/badges/512/0AAQlxMgMgzde0YBumrWPHpcYWq3cgF8prilPFTAWeE.png",
+          "medium": "https://api-assets.clashofclans.com/badges/200/0AAQlxMgMgzde0YBumrWPHpcYWq3cgF8prilPFTAWeE.png"
+        },
+        "members": [
+          {
+            "tag": "#2VJVRLPVQ",
+            "name": "SCEREMING DEATH",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#J92UL0RQ",
+            "name": "rusty alzailani",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#LLC8Y0PPV",
+            "name": "Libur",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#QUC0R80GQ",
+            "name": "LIKE JOKARTO",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#8VRL9G8JL",
+            "name": "Aryadaiv",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#Q8JRRGCP8",
+            "name": "PISCO LEADER",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#QCLLQPRVJ",
+            "name": "OSaradaChanO",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#QYR9QL2YJ",
+            "name": "Art3mis",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#9YVJPLVPC",
+            "name": "BlueldeA",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#L992QRG9Y",
+            "name": "Regency",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#GYCCUJQ22",
+            "name": "Rahma11",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#QGQULL92L",
+            "name": "OEkaChan0",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#8PQUGVJR8",
+            "name": "HAFIDH HFH",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#2980GCPVQ",
+            "name": "NIGHT FURY",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#9C2VUYC9V",
+            "name": "HotpinParagon",
+            "townHallLevel": 8
+          }
+        ]
+      },
+      {
+        "tag": "#2GLL00Q0U",
+        "name": "MAORIF-_-PLUS",
+        "clanLevel": 6,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/badges/70/REuMPl3FAw5LBpuSc3q9yLnULe45VaUgmoxYbolK_EY.png",
+          "large": "https://api-assets.clashofclans.com/badges/512/REuMPl3FAw5LBpuSc3q9yLnULe45VaUgmoxYbolK_EY.png",
+          "medium": "https://api-assets.clashofclans.com/badges/200/REuMPl3FAw5LBpuSc3q9yLnULe45VaUgmoxYbolK_EY.png"
+        },
+        "members": [
+          {
+            "tag": "#CU8YYCUP",
+            "name": "xoxoxoxol",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#8JLYGLQ2R",
+            "name": "S P A R T A K",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#QCJLC928C",
+            "name": "vldm1",
+            "townHallLevel": 6
+          },
+          {
+            "tag": "#G9C99QP0G",
+            "name": "Яша Лава",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#QJVLYR9QV",
+            "name": "loopone1337",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#G808RYPLQ",
+            "name": "ShoranX",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#G9GRGY0UC",
+            "name": "kefteme",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#GYRV0RQL8",
+            "name": "Ahiga",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#YVUJUQJJ2",
+            "name": "Samir",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#QRRCV82G",
+            "name": "J()RA",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#QCJJUVYLQ",
+            "name": "Baxamockow",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#QVGRJUJ22",
+            "name": "печень",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#G2RP8ULVY",
+            "name": "мыфка",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#LPYRV0CCV",
+            "name": "_юсуф_",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#G9C9U2CQV",
+            "name": "suchka",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#P2QR0902",
+            "name": "NARCO_DILER",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#QL9GCCPCL",
+            "name": "UzShaXa",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#GY22VL0GG",
+            "name": "Азимбай**",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#GPL2VY2UP",
+            "name": "Mycoplasma",
+            "townHallLevel": 10
+          }
+        ]
+      },
+      {
+        "tag": "#2Q90RLR8J",
+        "name": "StarBae",
+        "clanLevel": 10,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/badges/70/D3D5l3JOWX9FbicQFsIH8uzkd0-m3ne4WfhV-x6fj50.png",
+          "large": "https://api-assets.clashofclans.com/badges/512/D3D5l3JOWX9FbicQFsIH8uzkd0-m3ne4WfhV-x6fj50.png",
+          "medium": "https://api-assets.clashofclans.com/badges/200/D3D5l3JOWX9FbicQFsIH8uzkd0-m3ne4WfhV-x6fj50.png"
+        },
+        "members": [
+          {
+            "tag": "#L8GQ0YYUV",
+            "name": "ciaa.",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#UYU9VPUJ",
+            "name": "koocaine",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#228RP9L9L",
+            "name": "Devi Tasdin",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#LGUG200PC",
+            "name": "klaps",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#2GJ98YP2C",
+            "name": "shadow man",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#9PCCRPRQY",
+            "name": "SANKALP",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#8R8VJCYRR",
+            "name": "thepunisher",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#G09CC02Q0",
+            "name": "Vestia",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#9YG02GCJY",
+            "name": "mirai",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#QLC0RGG2L",
+            "name": "Leaflette",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#GPG9YLQCR",
+            "name": "AyoooLucasHeree",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#L0YGU8GV0",
+            "name": "baevoo",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#Q98LYJU28",
+            "name": "LALALALA",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#2Q8LVR9P8",
+            "name": "jerichoo",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#2C2VV288P",
+            "name": "venezia",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#2GCPLJ0G0",
+            "name": "Richmond Fang",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#2Y28JLYVJ",
+            "name": "Dicky..",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#PPUVVJVV",
+            "name": "crkynt",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#YCYCLVVPU",
+            "name": "StanleyS",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#RRGYVQYY",
+            "name": "HarunaRika2",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#PCVG2GYV2",
+            "name": "◉͛‿◉̶◉͛‿◉̶",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#QLPUCV0V8",
+            "name": "Claire",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#2J20C2VJ8",
+            "name": "keiyanaja",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#9RRRV0UQ9",
+            "name": "varissa",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#YURYVJQPV",
+            "name": "Blackmoonzzz",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#YLRU0GPG",
+            "name": "winardy",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#QQJLY9GPJ",
+            "name": "BangKeribo",
+            "townHallLevel": 3
+          },
+          {
+            "tag": "#QV0QP9LJC",
+            "name": "Weirdo",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#UYUJ0URV",
+            "name": "Jansen",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#22L8JPV0U",
+            "name": "#zaki#",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#R80G82G8",
+            "name": "THALIATAN",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#YCQU0U8YQ",
+            "name": "keiyan",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#9QPQ0RY9Q",
+            "name": "Circle",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#9LQ20LU9R",
+            "name": "vicky",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#G89LUG0CY",
+            "name": "Vennn",
+            "townHallLevel": 5
+          },
+          {
+            "tag": "#CV9V0QJP",
+            "name": "kia",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#QG008VC8U",
+            "name": "KLARA LOVE U",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#L9RULUQJ",
+            "name": "Rooseveltdhs",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#QQGUCGL2V",
+            "name": "Akshii",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#PG0V2L999",
+            "name": "Klemen",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#2998Y80LG",
+            "name": "rciz",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#QCJP929LJ",
+            "name": "Devin",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#P89LVR",
+            "name": "-SC-Luis",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#PCU8JVGV",
+            "name": "mikhail",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#8PU2CPVV0",
+            "name": "Rubik's",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#R29C8C89",
+            "name": "Robin",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#ULRCGULL",
+            "name": "raihan",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#JQVVL8LL",
+            "name": "林コウキ",
+            "townHallLevel": 11
+          }
+        ]
+      },
+      {
+        "tag": "#2G2GGG9QU",
+        "name": "Rocket Boyz",
+        "clanLevel": 3,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/badges/70/DADJ8FTqNPv17Sgav419sQ_Xq14h7bOeOJnrZxM2o-A.png",
+          "large": "https://api-assets.clashofclans.com/badges/512/DADJ8FTqNPv17Sgav419sQ_Xq14h7bOeOJnrZxM2o-A.png",
+          "medium": "https://api-assets.clashofclans.com/badges/200/DADJ8FTqNPv17Sgav419sQ_Xq14h7bOeOJnrZxM2o-A.png"
+        },
+        "members": [
+          {
+            "tag": "#PP9R90VQ",
+            "name": "TheBigQB",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#9JVUCUG8R",
+            "name": "k.ee.gan",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#LRQPR2QVY",
+            "name": "ktm454",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#LLG9JYYQ9",
+            "name": "Wildmaster6489",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#YY82Q08PP",
+            "name": "OgSnowbone",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#LLU0UPGLV",
+            "name": "MR KNIGHT",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#YJUGRULYR",
+            "name": "ShortAndProud",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#QCGJURCL",
+            "name": "Cbogs",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#9CJ2LL0J0",
+            "name": "boss",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#G8U0CGGR8",
+            "name": "WallyTheWalrus",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#8RGUGQ92",
+            "name": "#PangetSiKayCee",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#L2PLP02GJ",
+            "name": "Deez",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#9JCJ0L99Q",
+            "name": "joker35459",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#LVVYYP9R0",
+            "name": "Fúria",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#YPVVP8R",
+            "name": "F2 Freestylers",
+            "townHallLevel": 12
+          }
+        ]
+      },
+      {
+        "tag": "#2CVYQVYC",
+        "name": "鳴神２",
+        "clanLevel": 23,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/badges/70/xLPjUXq0pS1-4e7Br0fXocWg3511iOfb3JoVY2VIP64.png",
+          "large": "https://api-assets.clashofclans.com/badges/512/xLPjUXq0pS1-4e7Br0fXocWg3511iOfb3JoVY2VIP64.png",
+          "medium": "https://api-assets.clashofclans.com/badges/200/xLPjUXq0pS1-4e7Br0fXocWg3511iOfb3JoVY2VIP64.png"
+        },
+        "members": [
+          {
+            "tag": "#Y80QYULJQ",
+            "name": "マサチカ",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#JV2JLJYL",
+            "name": "囧ネオペルシア囧",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#PVUU0PG90",
+            "name": "馬さん",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#YC0QYLR8P",
+            "name": "SORA",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#9QLQ2PLP",
+            "name": "あたり前田のクラッカー",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#29LUQGQ2Q",
+            "name": "マサキ",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#299JCVLGV",
+            "name": "ひかりゆうま",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#PYPCR8002",
+            "name": "Good Luck ♪",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#PJGR8P2QY",
+            "name": "しょご3",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#YLYQYP892",
+            "name": "イノ",
+            "townHallLevel": 5
+          },
+          {
+            "tag": "#LVQJ0J000",
+            "name": "アポ社長",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#P8Y2RR2Y0",
+            "name": "凜*",
+            "townHallLevel": 15
+          },
+          {
+            "tag": "#2LR8JP209",
+            "name": "トミー",
+            "townHallLevel": 15
+          },
+          {
+            "tag": "#88R900U2",
+            "name": "鹿丸",
+            "townHallLevel": 15
+          },
+          {
+            "tag": "#9UURGL82G",
+            "name": "Hitomu",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#Q2VR8GQ9Y",
+            "name": "I AM PUMITAN",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#2RP8C8L2Y",
+            "name": "knt,Jr.",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#P0VLRGRGJ",
+            "name": "天理の黒猫さん",
+            "townHallLevel": 15
+          },
+          {
+            "tag": "#RLJL8Q98",
+            "name": "凛＊",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#UVVRYRLV",
+            "name": "yuyu",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#VJ9QGRRQ",
+            "name": "ひろ！",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#2Q80CV9R",
+            "name": "やまけん",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#LRYCGQVR8",
+            "name": "トプ",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#VRGPPGJ",
+            "name": "あず",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#YGYPYPGV",
+            "name": "天理の黒猫さん",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#YRJ8UCCQ",
+            "name": "おらもんど",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#8QP9PYCUC",
+            "name": "マサキチ",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#YYC2CC2JC",
+            "name": "臨時リーダー",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#8UV9JP0CG",
+            "name": "しょご",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#2QGGVPCRU",
+            "name": "とみー",
+            "townHallLevel": 15
+          },
+          {
+            "tag": "#L0RPVQ9LL",
+            "name": "マサユキ",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#YLR8G2R8Y",
+            "name": "みんなの突破くん",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#99YQLQ00Q",
+            "name": "しゅくてん",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#P8R0PJQ0C",
+            "name": "瑠綯",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#Q2V0UYLG2",
+            "name": "クラクラ",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#9RVCCCV8C",
+            "name": "ゆうき",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#9RP2LR9UR",
+            "name": "凛 .",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#Y99VCVC92",
+            "name": "凛.*･ﾟ",
+            "townHallLevel": 11
+          }
+        ]
+      },
+      {
+        "tag": "#YV2J2JCL",
+        "name": "shivam group",
+        "clanLevel": 15,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/badges/70/_V6Bk5_nINy1ykQRuji1EDvFs5-XuJWI60T5ZMsY3wk.png",
+          "large": "https://api-assets.clashofclans.com/badges/512/_V6Bk5_nINy1ykQRuji1EDvFs5-XuJWI60T5ZMsY3wk.png",
+          "medium": "https://api-assets.clashofclans.com/badges/200/_V6Bk5_nINy1ykQRuji1EDvFs5-XuJWI60T5ZMsY3wk.png"
+        },
+        "members": [
+          {
+            "tag": "#2PG2R88JU",
+            "name": "$PRATIK$",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#P9L0UJPYV",
+            "name": "dhruv",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#LJ8GPP9L9",
+            "name": "Virat_one8",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#8PCJ228P0",
+            "name": "t-20",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#90PJRYPPG",
+            "name": "PreFax 2.0",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#8YP2UL88V",
+            "name": "KIOs",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#PGVLU0CQ8",
+            "name": "mohit dabhi",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#8URR2CYYP",
+            "name": "Trushu",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#2VCRR9P9Y",
+            "name": "KETAN",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#2J9RCCLGG",
+            "name": "parth",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#G99JRJRJG",
+            "name": "DK18",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#LQ2QQ2QVR",
+            "name": "gatu",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#P0RQYYPUC",
+            "name": "JaImIn",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#20C8JPU02",
+            "name": "paresh",
+            "townHallLevel": 14
+          },
+          {
+            "tag": "#29GVCRCCJ",
+            "name": "bhaumik",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#QVLRRG8L8",
+            "name": "shubham_134",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#Q988GPYLR",
+            "name": "Krishna",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#LQGR8JYCL",
+            "name": "kartik 01",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#PJ88LUL92",
+            "name": "smit",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#LRUL0L2P2",
+            "name": "$@GG¥∆B€@$T",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#L8VY0YQRC",
+            "name": "Vatsal",
+            "townHallLevel": 13
+          }
+        ]
+      },
+      {
+        "tag": "#2LJG990QC",
+        "name": "SH Grand Fleet",
+        "clanLevel": 4,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/badges/70/jJ8xwYgbPE4RVU9o8oYPTb4m6XUGFu0N1wn7MO11Q3Q.png",
+          "large": "https://api-assets.clashofclans.com/badges/512/jJ8xwYgbPE4RVU9o8oYPTb4m6XUGFu0N1wn7MO11Q3Q.png",
+          "medium": "https://api-assets.clashofclans.com/badges/200/jJ8xwYgbPE4RVU9o8oYPTb4m6XUGFu0N1wn7MO11Q3Q.png"
+        },
+        "members": [
+          {
+            "tag": "#G98YY2GRQ",
+            "name": "Cloak",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#GY9ULYQ92",
+            "name": "kharul",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#G0LLYLY89",
+            "name": "clash",
+            "townHallLevel": 6
+          },
+          {
+            "tag": "#L2LY2VYRC",
+            "name": "Explorers",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#Y82VULPRL",
+            "name": "Where’s Jisatsu",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#YPLRC9J2",
+            "name": "den fede By",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#QVLV02JQL",
+            "name": "Dsmini",
+            "townHallLevel": 6
+          },
+          {
+            "tag": "#QJGUL9JQC",
+            "name": "Donater3000",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#2VYLYUG8P",
+            "name": "Buuv",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#Q2C8JVV90",
+            "name": "Ace",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#999V8JJRR",
+            "name": "Clint_Beastwood",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#G0VRJLYQY",
+            "name": "Poker",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#U8UPYJC0",
+            "name": "Jisatsu",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#G99RGPGJ2",
+            "name": "Bleak",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#2YPR009J",
+            "name": "K mig",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#9GU0URY",
+            "name": "Oliv3Gard3n",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#QPC8Y9PYJ",
+            "name": "AndyReas",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#G28PVYU9U",
+            "name": "XenoJake",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#LPYC8Y829",
+            "name": "에zzz",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#QJVYVP0UU",
+            "name": "Dr.Horselutbag",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#G8RRQVG0G",
+            "name": "Chris Bumstead",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#QJ8UCCUG0",
+            "name": "Omario",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#8QL0CRYPL",
+            "name": "ImJisatsu",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#YCPJVVY2C",
+            "name": "flamingo",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#L02YJY8UU",
+            "name": "CDP",
+            "townHallLevel": 8
+          },
+          {
+            "tag": "#QG8YQCY0U",
+            "name": "Prutskid",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#GYLR8L28J",
+            "name": "Anime god",
+            "townHallLevel": 8
+          }
+        ]
+      },
+      {
+        "tag": "#2LLPQUG8C",
+        "name": "HASHIRA",
+        "clanLevel": 5,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/badges/70/j6ZNFVsqOKdIRKWfWhh6Pv36oiCsTK3JcuQHtiMzQ68.png",
+          "large": "https://api-assets.clashofclans.com/badges/512/j6ZNFVsqOKdIRKWfWhh6Pv36oiCsTK3JcuQHtiMzQ68.png",
+          "medium": "https://api-assets.clashofclans.com/badges/200/j6ZNFVsqOKdIRKWfWhh6Pv36oiCsTK3JcuQHtiMzQ68.png"
+        },
+        "members": [
+          {
+            "tag": "#G2UQ2PYCV",
+            "name": "Lord Grumpy But",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#G0C0L9QU2",
+            "name": "h4d35",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#QVYJ8QJVC",
+            "name": "manab",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#GP0U8UJLV",
+            "name": "Kirubanithi",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#QRC0GLQJR",
+            "name": "broken",
+            "townHallLevel": 7
+          },
+          {
+            "tag": "#YGLG2LJC2",
+            "name": "VISHWA",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#G9J9RLQQU",
+            "name": "Azamat",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#PRURRCVPY",
+            "name": "Thor NeeVI",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#YPJQYGULQ",
+            "name": "JITU BORO",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#G9QJ8L0C2",
+            "name": "hyper93",
+            "townHallLevel": 6
+          },
+          {
+            "tag": "#820GUVQ9G",
+            "name": "furqaan26",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#Y2Q9YRPQ2",
+            "name": "Pectus",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#QL2J9CQVV",
+            "name": "Katapa",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#2R2RQ2GQ2",
+            "name": "sherry",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#20Y8Q99GL",
+            "name": "Âbø ŵëßâm",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#Q2VQ2Y0C2",
+            "name": "sabari",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#9CUG98QUQ",
+            "name": "devil attack",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#YUR8PP9UL",
+            "name": "@Arun",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#QU8J0CV9J",
+            "name": "UG_krish",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#QUG8RRPR9",
+            "name": "KO HEIN",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#9V80RR0YP",
+            "name": "ZATCH KING",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#G2G80Y8UJ",
+            "name": "guudy",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#LVGQJ2RLL",
+            "name": "deavaraj",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#G098JQ8C8",
+            "name": "faraataman",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#PJCGJPPL",
+            "name": "Phantom_86",
+            "townHallLevel": 10
+          },
+          {
+            "tag": "#QGC0JYPPV",
+            "name": "viraj",
+            "townHallLevel": 12
+          },
+          {
+            "tag": "#2VVQV88GL",
+            "name": "afzalovichh",
+            "townHallLevel": 11
+          },
+          {
+            "tag": "#LL2LR22CU",
+            "name": "ابو كمال",
+            "townHallLevel": 13
+          },
+          {
+            "tag": "#GPC208LJQ",
+            "name": "kishore",
+            "townHallLevel": 9
+          },
+          {
+            "tag": "#LYC0CP2U2",
+            "name": "JUEL+SHAKIL",
+            "townHallLevel": 10
+          }
+        ]
+      }
+    ],
+    "rounds": [
+      {
+        "warTags": [
+          "#88UYGL2Q0",
+          "#88UYGL08J",
+          "#88UYGYCG8",
+          "#88UYGYUUL"
+        ]
+      },
+      {
+        "warTags": [
+          "#88UQPYVQG",
+          "#88UQPL888",
+          "#88UQPL0CU",
+          "#88UQPL9LL"
+        ]
+      },
+      {
+        "warTags": [
+          "#88URJYJJJ",
+          "#88URJYVYP",
+          "#88URJYU20",
+          "#88URJL0RG"
+        ]
+      },
+      {
+        "warTags": [
+          "#88UUPYR2U",
+          "#88UUPYJL8",
+          "#88UUPYCJL",
+          "#88UUPYV0J"
+        ]
+      },
+      {
+        "warTags": [
+          "#88V0CYGUL",
+          "#88V0CYJ8J",
+          "#88V0CYCQ0",
+          "#88V0CYUCP"
+        ]
+      },
+      {
+        "warTags": [
+          "#0",
+          "#0",
+          "#0",
+          "#0"
+        ]
+      },
+      {
+        "warTags": [
+          "#0",
+          "#0",
+          "#0",
+          "#0"
+        ]
+      }
+    ]
+  }
