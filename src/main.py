@@ -290,6 +290,10 @@ async def current_war(ctx, playertag: Option(str, "Enter your CoC player tag", r
     Returns:
         _type_: _description_
     """
+    # it can happen, that the command cannot respond with image within 3 seconds,
+    # so we need to send an inital response, after which there are 15 minutes to respond
+    await ctx.defer()
+
     # fetch data
     try:
         clantag: str = await bot_util.handle_clantag_options(ctx.author.display_name, playertag, clantag)
@@ -308,6 +312,101 @@ async def current_war(ctx, playertag: Option(str, "Enter your CoC player tag", r
     us = cw["clan"]
     op = cw["opponent"]
     apm = cw["attacksPerMember"]
+    ts = cw["teamSize"]
+
+    bot_util.average_TH(us["members"])
+
+    war_status = \
+    f"""
+    War Status 
+    State: {cw["state"]}
+
+    {us["name"]} (TH lvl {bot_util.average_TH(us["members"])})  
+    {us["stars"]} / {ts * 3} stars
+    {us["attacks"]} / {ts * apm} attacks
+
+    vs. 
+    
+    {op["name"]} (TH lvl {bot_util.average_TH(op["members"])})
+    {op["stars"]} / {ts * 3} stars
+    {op["attacks"]} / {ts * apm} attacks
+    """
+
+    # send response
+    await ctx.respond(dedent(war_status))
+
+@bot.slash_command(name="current_league_war", description="Returns details about a clan's ongoing league war", guild_ids=[DISCORD_SERVER_ID])
+async def current_league_war(ctx, playertag: Option(str, "Enter your CoC player tag", required=False, default=None),
+                       clantag: Option(str, "Enter your CoC clan tag", required=False, default=None)):
+    """Sends a response containing a details about Clash of Clans clan's current war, 
+    either by looking up an explicitly passed playertag or clantag or by extracting a playertag from
+    the discord user's displayname. If no clan tag is passed, the player tag will be used to fetch a 
+    clantag associated with the player.
+
+    Args:
+        ctx (_type_): Discord context, containing attributes such as displayname and functions
+        playertag (Option, optional): A CoC player tag. Defaults to False, default=None).
+        clantag (Option, optional): A CoC clan tag. Defaults to False, default=None).
+
+    Returns:
+        _type_: _description_
+    """
+
+    def get_current_league_round(rounds: list) -> list:
+        """Get the current "battle round" of the league group
+
+        Args:
+            rounds (list): List of rounds
+
+        Returns:
+            list: A list of war tags
+        """
+        prev = [0]
+        for round in rounds:
+            if round["warTags"][0] == "#0":
+                return (prev["warTags"], None)
+            prev = round
+        
+        return (rounds[-2]["warTags"], rounds[-1]["warTags"])
+    
+    def find_right_war(clantag: str, wartags: list) -> dict:
+        """Among a list of wartags, find the war featuring the clan with clantag
+
+        Args:
+            clantag (str): A clans clan tag
+            wartags (list): A war tag
+
+        Returns:
+            dict: War data
+        """
+        for wartag in wartags:
+            war = coc.CWL_war(wartag)
+            if war["clan"]["tag"] == clantag:
+                return (war, "clan")
+            
+            if war["opponent"]["tag"] == clantag:
+                return (war, "opponent")
+    # it can happen, that the command cannot respond with image within 3 seconds,
+    # so we need to send an inital response, after which there are 15 minutes to respond
+    await ctx.defer()
+
+    # fetch data
+    try:
+        clantag: str = await bot_util.handle_clantag_options(ctx.author.display_name, playertag, clantag)
+        print(clantag)
+        current_group = coc.current_league_group(clantag)
+        current_round = get_current_league_round(current_group["rounds"])
+        current_war, clankey = find_right_war(clantag, current_round)
+        op_key = "opponent" if clankey != "opponent" else "clan"
+    except Exception as e:
+        return await ctx.respond(e)
+
+    # format response (a lot if duplicate code here, fix that)
+    cw = current_war
+    
+    us = cw[clankey]
+    op = cw[op_key]
+    apm = 1
     ts = cw["teamSize"]
 
     bot_util.average_TH(us["members"])

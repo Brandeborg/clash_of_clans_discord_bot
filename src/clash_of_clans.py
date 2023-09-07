@@ -83,4 +83,52 @@ class CoCAPI:
         else:
             print(res.status_code)
             raise Exception("Something went wrong. The passed clantag may not exist.")
+        
+    def current_league_group(self, clantag: str):
+        """Fetches a clan's current war league group data using CoC API
+
+        Args:
+            clantag (str): A CoC clan tag
+
+        Raises:
+            Exception: If status code is not 2xx, raise an exception
+
+        Returns:
+            dict: Current clan war data
+        """
+        # replace # with %23 for a properly formatted url
+        clantag = urllib.parse.quote(clantag)
+
+        with httpx.Client() as client: 
+            res = client.get(f"{self.base_url}/clans/{clantag}/currentwar/leaguegroup", headers=self.headers)
+
+        if res.status_code // 100 == 2:
+            return res.json()
+        else:
+            print(res.status_code)
+            raise Exception("Something went wrong. The passed clantag may not exist.")
+        
+    def CWL_war(self, wartag: str) -> dict:
+        """Fetches a CWL war using CoC API
+
+        Args:
+            clantag (str): A CoC CWL war tag
+
+        Raises:
+            Exception: If status code is not 2xx, raise an exception
+
+        Returns:
+            dict: Current clan war data
+        """
+        # replace # with %23 for a properly formatted url
+        wartag = urllib.parse.quote(wartag)
+
+        with httpx.Client() as client: 
+            res = client.get(f"{self.base_url}/clanwarleagues/wars/{wartag}", headers=self.headers)
+
+        if res.status_code // 100 == 2:
+            return res.json()
+        else:
+            print(res.status_code)
+            raise Exception("Something went wrong. The passed wartag may not exist.")
 
