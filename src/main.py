@@ -316,10 +316,11 @@ async def current_war(ctx, playertag: Option(str, "Enter your CoC player tag", r
 
     bot_util.average_TH(us["members"])
 
+    pretty_name_map = bot_util.load_json("assets/pretty_name_map.json")["war"]
     war_status = \
     f"""
     War Status 
-    State: {cw["state"]}
+    State: {pretty_name_map[cw["state"]]}
 
     {us["name"]} (TH lvl {bot_util.average_TH(us["members"])})  
     {us["stars"]} / {ts * 3} stars
@@ -367,18 +368,34 @@ async def current_league_war(ctx, playertag: Option(str, "Enter your CoC player 
                 return (prev["warTags"], None)
             prev = round
         
+        # if all rounds are filled with battle tags, and none are filled with "#0"
+        # the wars of the last round might either be in preparation day or in battle day.
+        # There is no way of knowing at this point in the code, so both the last and second to last
+        # rounds are returned.
         return (rounds[-2]["warTags"], rounds[-1]["warTags"])
     
     def find_right_war(clantag: str, wartags: list) -> dict:
-        """Among a list of wartags, find the war featuring the clan with clantag
+        """First, find out which of the two rounds in wartags is an ongoing war (not prep).
+        Among the list of wartags of the current round, find the war featuring the clan with clantag. 
 
         Args:
             clantag (str): A clans clan tag
-            wartags (list): A war tag
+            wartags (tuiple[list]): A tuple of lists of wartags
 
         Returns:
             dict: War data
         """
+
+        round, next_round = wartags
+        # get the war state of the earliest round
+        round_state = coc.CWL_war(round[0])["state"]
+
+        # if the earliest round has ended, current round is the next round
+        wartags = next_round if round_state == "warEnded" else round
+
+        # find the war of this round featuring clantag
+        # also return the "clan key" because it alters whether "our own" clan is considered
+        # "main clan" or "opponent"
         for wartag in wartags:
             war = coc.CWL_war(wartag)
             if war["clan"]["tag"] == clantag:
@@ -393,28 +410,28 @@ async def current_league_war(ctx, playertag: Option(str, "Enter your CoC player 
     # fetch data
     try:
         clantag: str = await bot_util.handle_clantag_options(ctx.author.display_name, playertag, clantag)
-        print(clantag)
         current_group = coc.current_league_group(clantag)
         current_round = get_current_league_round(current_group["rounds"])
-        current_war, clankey = find_right_war(clantag, current_round)
-        op_key = "opponent" if clankey != "opponent" else "clan"
+        current_war, clan_key = find_right_war(clantag, current_round)
+        op_key = "opponent" if clan_key != "opponent" else "clan"
     except Exception as e:
         return await ctx.respond(e)
 
     # format response (a lot if duplicate code here, fix that)
     cw = current_war
     
-    us = cw[clankey]
+    us = cw[clan_key]
     op = cw[op_key]
     apm = 1
     ts = cw["teamSize"]
 
     bot_util.average_TH(us["members"])
 
+    pretty_name_map = bot_util.load_json("assets/pretty_name_map.json")["war"]
     war_status = \
     f"""
     War Status 
-    State: {cw["state"]}
+    State: {pretty_name_map[cw["state"]]}
 
     {us["name"]} (TH lvl {bot_util.average_TH(us["members"])})  
     {us["stars"]} / {ts * 3} stars
