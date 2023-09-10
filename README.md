@@ -2,9 +2,9 @@ A Clash of Clans discord bot to look up a few details like player and clan war p
 
 In root folder run 
 
-´´´bash
+```bash
 py src/main.py
-´´´
+```
 
 to run bot.
 
